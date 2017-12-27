@@ -1,0 +1,11 @@
+name: Main
+items:
+    -
+        title: 'Quick start guide'
+        type: cms-page
+        code: navbarQuickStartGuide
+        reference: quick_start_guide
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

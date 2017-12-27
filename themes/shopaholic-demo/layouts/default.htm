@@ -1,0 +1,34 @@
+description = "Default layout"
+
+[staticMenu staticMenuMain]
+code = "main"
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ this.page.meta_title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ 'assets/css/bootstrap.min.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/bootstrap-grid.min.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/bootstrap-reboot.min.css'|theme }}" rel="stylesheet">
+    {% styles %}
+</head>
+<body>
+    <div class="container-fluid">
+        {# Header #}
+        <section>
+            {% partial 'common/header' %}
+        </section>
+        {% page %}
+        {# Footer #}
+    </div>
+    <script src="{{ 'assets/vendor/jquery.js'|theme }}"></script>
+    <script src="{{ 'assets/js/bootstrap.min.js'|theme }}"></script>
+    <script src="{{ 'assets/js/bootstrap.bundle.min.js'|theme }}"></script>
+    {% framework extras %}
+    {% scripts %}
+</body>
+</html>
