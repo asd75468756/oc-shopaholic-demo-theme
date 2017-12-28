@@ -1,0 +1,30 @@
+title = "Brand page"
+url = "/brand/:slug"
+layout = "default"
+meta_title = "Brand page"
+is_hidden = 0
+
+[BrandPage]
+slug = "{{ :slug }}"
+slug_required = 1
+==
+
+{% set obBrand = BrandPage.get() %}
+
+
+{% partial 'breadcrumbs/brand_list' sPageTitle = obBrand.name %}
+
+<div class="row">
+    <div class="mb-2 col-3">
+        {% if obBrand.preview_image is not empty %}
+            <img class="img-fluid" src="{{ obBrand.preview_image.path }}" alt="{{ obBrand.preview_image.description }}" title="{{ obBrand.preview_image.title }}">
+        {% endif %}
+   </div>
+    <div class="jumbotron col-9">
+        <h1 class="display-3">{{ obBrand.name }}</h1>
+        <p class="lead">{{ obBrand.preview_text }}</p>
+        <hr class="my-4">
+        {{ obBrand.description|raw }}
+    </div>
+
+</div>

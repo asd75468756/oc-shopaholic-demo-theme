@@ -2,9 +2,22 @@ name: Main
 items:
     -
         title: 'Quick start guide'
+        nesting: ''
         type: cms-page
+        url: ''
         code: navbarQuickStartGuide
         reference: quick_start_guide
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Brands
+        type: cms-page
+        code: ''
+        reference: brand_list
         viewBag:
             isHidden: '0'
             cssClass: ''
