@@ -8,14 +8,13 @@ is_hidden = 0
 slug = "{{ :slug }}"
 slug_required = 1
 ==
-
+{# Get brand item #}
 {% set obBrand = BrandPage.get() %}
 
-
-{% partial 'breadcrumbs/brand_list' sPageTitle = obBrand.name %}
+{% partial 'breadcrumbs/brand_list' sTitle = obBrand.name %}
 
 <div class="row">
-    <div class="mb-2 col-3">
+    <div class="mb-2 col-2">
         {% if obBrand.preview_image is not empty %}
             <img class="img-fluid" src="{{ obBrand.preview_image.path }}" alt="{{ obBrand.preview_image.description }}" title="{{ obBrand.preview_image.title }}">
         {% endif %}

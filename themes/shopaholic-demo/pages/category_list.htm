@@ -1,0 +1,45 @@
+title = "Category list"
+url = "/catalog"
+layout = "default"
+meta_title = "Category list"
+is_hidden = 0
+
+[CategoryList]
+==
+{% partial 'breadcrumbs/category_list' sTitle="Catalog" %}
+<div class="row align-center justify-content-center">
+    <h1 class="display-3">Category list</h1>
+</div>
+
+<div class="alert alert-success" role="alert">
+    Block with tree of categories.
+</div>
+
+{# Get category collection #}
+{% set obCategoryList =  CategoryList.make().tree() %}
+{% if obCategoryList.isNotEmpty() %}
+    <nav class="navbar navbar-light bg-light">
+        <nav class="nav nav-pills flex-column">
+
+            {# Render parent category list #}
+            {% for obParentCategory in obCategoryList %}
+            <a class="nav-link" href="{{ 'category'|page({'parent': obParentCategory.slug}) }}">
+                {{ obParentCategory.name }} ({{ obParentCategory.product_count }})
+            </a>
+
+            {# Check children category list #}
+            {% if obParentCategory.children.isNotEmpty() %}
+                <nav class="nav nav-pills flex-column">
+
+                    {# Render children category list #}
+                    {% for obCategory in obParentCategory.children %}
+                        <a class="nav-link ml-3 my-1" href="{{ 'product_list'|page({'parent': obParentCategory.slug, 'slug': obCategory.slug}) }}">
+                            {{ obCategory.name }} ({{ obCategory.product_count }} goods)
+                        </a>
+                    {% endfor %}
+                </nav>
+            {% endif %}
+        </nav>
+        {% endfor %}
+    </nav>
+{% endif %}

@@ -11,6 +11,10 @@ is_hidden = 0
     <h1 class="display-3">Brand list</h1>
 </div>
 
+<div class="alert alert-success" role="alert">
+    Block with a list of brands. List of brands sorted and filtered by field "active".
+</div>
+
 {# Get brand collection, apply sorting and filter by active flag #}
 {% set obBrandList =  BrandList.make().sort().active() %}
 {% if obBrandList.isNotEmpty() %}

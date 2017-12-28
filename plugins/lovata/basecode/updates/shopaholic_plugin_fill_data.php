@@ -20,6 +20,7 @@ class ShopaholicPluginFillData extends Migration
     {
         $this->fillTranslateTable();
         $this->fillBrandTable();
+        $this->fillCategoryTable();
     }
 
     /**
@@ -36,6 +37,9 @@ class ShopaholicPluginFillData extends Migration
         DB::table('system_files')->truncate();
     }
 
+    /**
+     * Fill brand list
+     */
     protected function fillBrandTable()
     {
         if(!Schema::hasTable('lovata_shopaholic_brands')) {
@@ -73,6 +77,76 @@ class ShopaholicPluginFillData extends Migration
 
         $obBrand->preview_image()->add($obFile);
         $obBrand->save();
+    }
+
+    /**
+     * Fill category list
+     */
+    protected function fillCategoryTable()
+    {
+        if(!Schema::hasTable('lovata_shopaholic_categories')) {
+            return;
+        }
+
+        //Create category Mobile
+        $obCategory = \Lovata\Shopaholic\Models\Category::create([
+            'active'       => true,
+            'name'         => 'Mobile',
+            'slug'         => 'mobile',
+            'code'         => 'mobile',
+            'preview_text' => 'Preview text. Category "Mobile"',
+            'description'  => '<p>Description text. Category <strong>"Mobile"</strong></p>',
+            'parent_id'    => 0,
+            'nest_depth'   => 1,
+            'nest_left'    => 0,
+            'nest_right'   => 2,
+        ]);
+
+        $obFile = new File();
+        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/mobile_preview_image.png'));
+
+        $obCategory->preview_image()->add($obFile);
+        $obCategory->save();
+
+        //Create category Phone
+        $obCategory = \Lovata\Shopaholic\Models\Category::create([
+            'active'       => true,
+            'name'         => 'Phones',
+            'slug'         => 'phones',
+            'code'         => 'phones',
+            'preview_text' => 'Preview text. Category "Phones"',
+            'description'  => '<p>Description text. Category <strong>"Phones"</strong></p>',
+            'parent_id'    => 1,
+            'nest_depth'   => 2,
+            'nest_left'    => 1,
+            'nest_right'   => 3,
+        ]);
+
+        $obFile = new File();
+        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/phones_preview_image.png'));
+
+        $obCategory->preview_image()->add($obFile);
+        $obCategory->save();
+
+        //Create category Tablet
+        $obCategory = \Lovata\Shopaholic\Models\Category::create([
+            'active'       => true,
+            'name'         => 'Tablets',
+            'slug'         => 'tablets',
+            'code'         => 'tablets',
+            'preview_text' => 'Preview text. Category "Tablets"',
+            'description'  => '<p>Description text. Category <strong>"Tablets"</strong></p>',
+            'parent_id'    => 1,
+            'nest_depth'   => 2,
+            'nest_left'    => 2,
+            'nest_right'   => 4,
+        ]);
+
+        $obFile = new File();
+        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/tablet_preview_image.png'));
+
+        $obCategory->preview_image()->add($obFile);
+        $obCategory->save();
     }
 
     /**

@@ -10,14 +10,27 @@ items:
         cmsPage: ''
         replace: ''
         viewBag:
-            isHidden: '0'
+            isHidden: '1'
             cssClass: ''
             isExternal: '0'
     -
         title: Brands
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: brand_list
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Catalog
+        type: cms-page
+        code: ''
+        reference: category_list
         viewBag:
             isHidden: '0'
             cssClass: ''
