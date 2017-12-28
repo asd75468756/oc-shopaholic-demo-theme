@@ -1,0 +1,6 @@
+plugin:
+    name: 'lovata.basecode::lang.plugin.name'
+    description: 'lovata.basecode::lang.plugin.description'
+    author: LOVATA
+    icon: oc-icon-magic
+    homepage: ''
