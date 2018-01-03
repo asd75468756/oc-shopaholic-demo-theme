@@ -18,9 +18,19 @@ class ShopaholicPluginFillData extends Migration
      */
     public function up()
     {
+        $this->truncateBrandTable();
+        $this->truncateCategoryTable();
+        $this->truncateProductTable();
+        $this->truncateOfferTable();
+        $this->truncateTranslateTable();
+
+        DB::table('system_files')->truncate();
+
         $this->fillTranslateTable();
         $this->fillBrandTable();
         $this->fillCategoryTable();
+        $this->fillProductTable();
+        $this->fillOfferTable();
     }
 
     /**
@@ -46,37 +56,32 @@ class ShopaholicPluginFillData extends Migration
             return;
         }
 
-        //Create brand Samsung
-        $obBrand = \Lovata\Shopaholic\Models\Brand::create([
-            'active'       => true,
-            'name'         => 'Samsung',
-            'slug'         => 'samsung',
-            'code'         => 'samsung',
-            'preview_text' => 'Preview text. Brand Samsung',
-            'description'  => '<p>Description text. Brand <strong>Samsung</strong></p>'
-        ]);
+        $sFilePath = plugins_path('lovata/basecode/csv/brand_list.csv');
+        if(!file_exists($sFilePath)) {
+            return;
+        }
 
-        $obFile = new File();
-        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/samsung_preview_image.png'));
+        $obFile = fopen($sFilePath, 'r');
+        while (($arRow = fgetcsv($obFile)) !== false) {
+            if(empty($arRow)) {
+                continue;
+            }
 
-        $obBrand->preview_image()->add($obFile);
-        $obBrand->save();
+            //Create brand
+            $obBrand = \Lovata\Shopaholic\Models\Brand::create([
+                'active'       => true,
+                'name'         => array_shift($arRow),
+                'slug'         => array_shift($arRow),
+                'code'         => array_shift($arRow),
+                'preview_text' => array_shift($arRow),
+                'description'  => array_shift($arRow),
+            ]);
 
-        //Create brand Apple
-        $obBrand = \Lovata\Shopaholic\Models\Brand::create([
-            'active'       => true,
-            'name'         => 'Apple',
-            'slug'         => 'apple',
-            'code'         => 'apple',
-            'preview_text' => 'Preview text. Brand Apple',
-            'description'  => '<p>Description text. Brand <strong>Apple</strong></p>'
-        ]);
-
-        $obFile = new File();
-        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/apple_preview_image.jpg'));
-
-        $obBrand->preview_image()->add($obFile);
-        $obBrand->save();
+            $obImage = new File();
+            $obImage->fromFile(plugins_path(array_shift($arRow)));
+            $obBrand->preview_image()->add($obImage);
+            $obBrand->save();
+        }
     }
 
     /**
@@ -88,65 +93,114 @@ class ShopaholicPluginFillData extends Migration
             return;
         }
 
-        //Create category Mobile
-        $obCategory = \Lovata\Shopaholic\Models\Category::create([
-            'active'       => true,
-            'name'         => 'Mobile',
-            'slug'         => 'mobile',
-            'code'         => 'mobile',
-            'preview_text' => 'Preview text. Category "Mobile"',
-            'description'  => '<p>Description text. Category <strong>"Mobile"</strong></p>',
-            'parent_id'    => 0,
-            'nest_depth'   => 1,
-            'nest_left'    => 0,
-            'nest_right'   => 2,
-        ]);
+        $sFilePath = plugins_path('lovata/basecode/csv/category_list.csv');
+        if(!file_exists($sFilePath)) {
+            return;
+        }
 
-        $obFile = new File();
-        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/mobile_preview_image.png'));
+        $obFile = fopen($sFilePath, 'r');
+        while (($arRow = fgetcsv($obFile)) !== false) {
+            if (empty($arRow)) {
+                continue;
+            }
 
-        $obCategory->preview_image()->add($obFile);
-        $obCategory->save();
+            //Create category
+            $obCategory = \Lovata\Shopaholic\Models\Category::create([
+                'active'       => true,
+                'name'         => array_shift($arRow),
+                'slug'         => array_shift($arRow),
+                'code'         => array_shift($arRow),
+                'preview_text' => array_shift($arRow),
+                'description'  => array_shift($arRow),
+                'parent_id'    => array_shift($arRow),
+                'nest_depth'   => array_shift($arRow),
+                'nest_left'    => array_shift($arRow),
+                'nest_right'   => array_shift($arRow),
+            ]);
 
-        //Create category Phone
-        $obCategory = \Lovata\Shopaholic\Models\Category::create([
-            'active'       => true,
-            'name'         => 'Phones',
-            'slug'         => 'phones',
-            'code'         => 'phones',
-            'preview_text' => 'Preview text. Category "Phones"',
-            'description'  => '<p>Description text. Category <strong>"Phones"</strong></p>',
-            'parent_id'    => 1,
-            'nest_depth'   => 2,
-            'nest_left'    => 1,
-            'nest_right'   => 3,
-        ]);
+            //array_shift($arRow);
+            //array_shift($arRow);
 
-        $obFile = new File();
-        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/phones_preview_image.png'));
+            $obImage = new File();
+            $obImage->fromFile(plugins_path(array_shift($arRow)));
+            $obCategory->preview_image()->add($obImage);
+            $obCategory->save();
+        }
+    }
 
-        $obCategory->preview_image()->add($obFile);
-        $obCategory->save();
+    /**
+     * Fill product list
+     */
+    protected function fillProductTable()
+    {
+        if(!Schema::hasTable('lovata_shopaholic_products')) {
+            return;
+        }
 
-        //Create category Tablet
-        $obCategory = \Lovata\Shopaholic\Models\Category::create([
-            'active'       => true,
-            'name'         => 'Tablets',
-            'slug'         => 'tablets',
-            'code'         => 'tablets',
-            'preview_text' => 'Preview text. Category "Tablets"',
-            'description'  => '<p>Description text. Category <strong>"Tablets"</strong></p>',
-            'parent_id'    => 1,
-            'nest_depth'   => 2,
-            'nest_left'    => 2,
-            'nest_right'   => 4,
-        ]);
+        $sFilePath = plugins_path('lovata/basecode/csv/product_list.csv');
+        if(!file_exists($sFilePath)) {
+            return;
+        }
 
-        $obFile = new File();
-        $obFile->fromFile(plugins_path('lovata/basecode/assets/img/tablet_preview_image.png'));
+        $obFile = fopen($sFilePath, 'r');
+        while (($arRow = fgetcsv($obFile)) !== false) {
+            if(empty($arRow)) {
+                continue;
+            }
 
-        $obCategory->preview_image()->add($obFile);
-        $obCategory->save();
+            //Create product
+            $obProduct = \Lovata\Shopaholic\Models\Product::create([
+                'active'       => true,
+                'name'         => array_shift($arRow),
+                'slug'         => array_shift($arRow),
+                'code'         => array_shift($arRow),
+                'preview_text' => array_shift($arRow),
+                'description'  => array_shift($arRow),
+                'category_id'  => array_shift($arRow),
+                'brand_id'     => array_shift($arRow),
+            ]);
+
+            $obImage = new File();
+            $obImage->fromFile(plugins_path(array_shift($arRow)));
+            $obProduct->preview_image()->add($obImage);
+            $obProduct->save();
+        }
+    }
+
+
+    /**
+     * Fill offer list
+     */
+    protected function fillOfferTable()
+    {
+        if(!Schema::hasTable('lovata_shopaholic_offers')) {
+            return;
+        }
+
+        $sFilePath = plugins_path('lovata/basecode/csv/offer_list.csv');
+        if(!file_exists($sFilePath)) {
+            return;
+        }
+
+        $obFile = fopen($sFilePath, 'r');
+        while (($arRow = fgetcsv($obFile)) !== false) {
+            if(empty($arRow)) {
+                continue;
+            }
+
+            //Create offer
+            \Lovata\Shopaholic\Models\Offer::create([
+                'active'       => true,
+                'name'         => array_shift($arRow),
+                'code'         => array_shift($arRow),
+                'preview_text' => array_shift($arRow),
+                'description'  => array_shift($arRow),
+                'price'        => array_shift($arRow),
+                'old_price'    => array_shift($arRow),
+                'quantity'     => array_shift($arRow),
+                'product_id'   => array_shift($arRow),
+            ]);
+        }
     }
 
     /**

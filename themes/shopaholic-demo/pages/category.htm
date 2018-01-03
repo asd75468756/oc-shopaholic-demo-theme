@@ -7,12 +7,16 @@ is_hidden = 0
 [CategoryPage]
 slug = "{{ :parent }}"
 slug_required = 1
-==
 
+[CatalogBreadcrumbs]
+==
 {# Get parent category item #}
 {% set obParentCategory = CategoryPage.get() %}
 
-{% partial 'breadcrumbs/category_list' sTitle = obParentCategory.name %}
+{# Get breadcrumbs #}
+{% set arBreadcrumbs = CatalogBreadcrumbs.getByCategoryID(obParentCategory.id) %}
+
+{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
 
 <div class="row">
     <div class="mb-2 col-2">
@@ -34,7 +38,7 @@ slug_required = 1
             {# Render children category list #}
             {% for obCategory in obParentCategory.children %}
                 <a class="list-group-item" href="{{ 'product_list'|page({'parent': obParentCategory.slug, 'slug': obCategory.slug}) }}">
-                    {{ obCategory.name }} ({{ obCategory.product_count }} goods)
+                    {{ obCategory.name }} ({{ obCategory.product_count }})
                 </a>
             {% endfor %}
         </div>

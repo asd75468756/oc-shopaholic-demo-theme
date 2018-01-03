@@ -1,0 +1,28 @@
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        {% if this.page.id == 'category_list' %}
+            <li class="breadcrumb-item active" aria-current="page">Catalog</li>
+        {% else %}
+            <li class="breadcrumb-item"><a href="{{ 'category_list'|page }}">Catalog</a></li>
+        {% endif %}
+
+        {% if arBreadcrumbs is not empty %}
+            {% for arItem in arBreadcrumbs %}
+
+                {% if loop.index == 1 %}
+                    {% set sHref = 'category'|page({'parent': arItem.slug}) %}
+                    {% set obParentCategory = arItem.item %}
+                {% elseif loop.index == 2 %}
+                    {% set sHref = 'product_list'|page({'parent': obParentCategory.slug, 'slug': arItem.slug}) %}
+                {% endif %}
+
+                {% if loop.last %}
+                    <li class="breadcrumb-item active" aria-current="page">{{ arItem.name }}</li>
+                {% else %}
+                    <li class="breadcrumb-item"><a href="{{ sHref }}">{{ arItem.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ol>
+</nav>

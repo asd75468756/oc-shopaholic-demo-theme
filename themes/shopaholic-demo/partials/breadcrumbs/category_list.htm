@@ -1,9 +1,0 @@
-<nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        {% if this.page.id != 'category_list' %}
-            <li class="breadcrumb-item"><a href="{{ 'category_list'|page }}">Catalog</a></li>
-        {% endif %}
-        <li class="breadcrumb-item active" aria-current="page">{{ sTitle|default(this.page.title) }}</li>
-    </ol>
-</nav>

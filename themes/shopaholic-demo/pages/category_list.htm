@@ -6,7 +6,7 @@ is_hidden = 0
 
 [CategoryList]
 ==
-{% partial 'breadcrumbs/category_list' sTitle="Catalog" %}
+{% partial 'breadcrumbs/catalog' %}
 <div class="row align-center justify-content-center">
     <h1 class="display-3">Category list</h1>
 </div>
@@ -34,7 +34,7 @@ is_hidden = 0
                     {# Render children category list #}
                     {% for obCategory in obParentCategory.children %}
                         <a class="nav-link ml-3 my-1" href="{{ 'product_list'|page({'parent': obParentCategory.slug, 'slug': obCategory.slug}) }}">
-                            {{ obCategory.name }} ({{ obCategory.product_count }} goods)
+                            {{ obCategory.name }} ({{ obCategory.product_count }})
                         </a>
                     {% endfor %}
                 </nav>

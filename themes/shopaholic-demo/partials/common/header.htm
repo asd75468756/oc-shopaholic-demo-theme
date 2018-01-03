@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" {% if this.page.id != 'index' %}href="/"{% endif %}>Home</a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             {# Process parent menu items #}
             {% for obParentMenuItem in arMainMenu if obParentMenuItem.viewBag.isHidden == false %}
 
@@ -43,6 +43,9 @@
                 </li>
             {% endfor %}
         </ul>
+        <a href="/test" class="navbar-text">
+          Cart
+        </a>
     </div>
 </nav>
 {% endif %}

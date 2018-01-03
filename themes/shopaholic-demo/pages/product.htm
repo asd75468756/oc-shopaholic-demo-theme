@@ -1,0 +1,65 @@
+title = "Product page"
+url = "/product/:slug"
+layout = "default"
+meta_title = "Product page"
+is_hidden = 0
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 1
+
+[CatalogBreadcrumbs]
+==
+{# Get product item #}
+{% set obProduct = ProductPage.get() %}
+
+{# Get breadcrumbs #}
+{% set arBreadcrumbs = CatalogBreadcrumbs.getByProductID(obProduct.id) %}
+
+{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+
+<div class="row">
+    <div class="mb-2 col-2">
+        {% if obProduct.preview_image is not empty %}
+            <img class="img-fluid" src="{{ obProduct.preview_image.path }}"
+                 alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+        {% else %}
+            <img class="img-fluid" src="{{ 'no-image.png'|media }}" alt="" title="">
+        {% endif %}
+    </div>
+    <div class="jumbotron col-8">
+        <h1 class="display-3">{{ obProduct.name }}</h1>
+        <h3>Vendor code: {{ obProduct.code }}</h3>
+        <p class="lead">{{ obProduct.preview_text }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <ul class="nav nav-tabs" id="productData" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="offers-tab" data-toggle="tab" href="#offers" role="tab" aria-controls="offers" aria-selected="true">Offers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="properties-tab" data-toggle="tab" href="#properties" role="tab" aria-controls="properties" aria-selected="false">Properties</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="tab-content" id="productDataContent">
+            <div class="tab-pane fade show active" id="offers" role="tabpanel" aria-labelledby="offers-tab">
+                {% partial "product/offer_list" obProduct=obProduct %}
+            </div>
+            <div class="tab-pane fade" id="properties" role="tabpanel" aria-labelledby="properties-tab"></div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab"></div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

@@ -1,0 +1,49 @@
+title = "Product list"
+url = "/catalog/:parent/:slug"
+layout = "default"
+meta_title = "Product list"
+is_hidden = 0
+
+[CategoryPage ParentCategoryPage]
+slug = "{{ :parent }}"
+slug_required = 1
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 1
+
+[CatalogBreadcrumbs]
+
+[ProductList]
+sorting = "new"
+==
+{# Get parent category item #}
+{% set obParentCategory = ParentCategoryPage.get() %}
+
+{# Get category item #}
+{% set obCategory = CategoryPage.get() %}
+
+{# Get breadcrumbs #}
+{% set arBreadcrumbs = CatalogBreadcrumbs.getByCategoryID(obCategory.id) %}
+
+{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+
+<div class="row">
+    <div class="mb-2 col-2">
+        {% if obCategory.preview_image is not empty %}
+            <img class="img-fluid" src="{{ obCategory.preview_image.path }}"
+                 alt="{{ obCategory.preview_image.description }}" title="{{ obCategory.preview_image.title }}">
+        {% endif %}
+    </div>
+    <div class="jumbotron col-8">
+        <h1 class="display-3">{{ obCategory.name }}</h1>
+        <p class="lead">{{ obCategory.preview_text }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        {% partial 'ajax/ajax_product_list' obCategory=obCategory %}
+    </div>
+    <div class="col-2"></div>
+</div>
