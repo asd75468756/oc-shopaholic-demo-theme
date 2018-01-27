@@ -1,6 +1,6 @@
 title = "Parent category page"
 url = "/catalog/:parent"
-layout = "default"
+layout = "main"
 meta_title = "Parent category page"
 is_hidden = 0
 
@@ -9,6 +9,9 @@ slug = "{{ :parent }}"
 slug_required = 1
 
 [CatalogBreadcrumbs]
+
+[ProductList]
+sorting = "new"
 ==
 {# Get parent category item #}
 {% set obParentCategory = CategoryPage.get() %}
@@ -16,31 +19,30 @@ slug_required = 1
 {# Get breadcrumbs #}
 {% set arBreadcrumbs = CatalogBreadcrumbs.getByCategoryID(obParentCategory.id) %}
 
-{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+<div class="uk-grid">
+    <div class="uk-width-1-6"></div>
+    <div class="uk-width-2-3">
+        {% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
 
-<div class="row">
-    <div class="mb-2 col-2">
-        {% if obParentCategory.preview_image is not empty %}
-            <img class="img-fluid" src="{{ obParentCategory.preview_image.path }}" alt="{{ obParentCategory.preview_image.description }}" title="{{ obParentCategory.preview_image.title }}">
+        {% partial 'category/category_info' obCategory=obParentCategory %}
+
+        <h4>Category list:</h4>
+        {% if obParentCategory.children is not empty %}
+            <ul class="uk-list uk-list-bullet">
+                {% for obCategory in obParentCategory.children if obCategory.product_count > 0 %}
+                    <li>
+                        <a class="uk-text-large" href="{{ obCategory.getPageUrl('product_list') }}">{{ obCategory.name }}</a>
+                        {# Get random product from category #}
+                        {% set obProductList = ProductList.make().category(obCategory.id).active().random(6) %}
+                        {% partial 'product/product_slider' obProductList=obProductList %}
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
-    </div>
-    <div class="jumbotron col-8">
-        <h1 class="display-3">{{ obParentCategory.name }}</h1>
-        <p class="lead">{{ obParentCategory.preview_text }}</p>
-        <hr class="my-4">
-        {{ obParentCategory.description|raw }}
-    </div>
 
-    {# Check children category list #}
-    {% if obParentCategory.children.isNotEmpty() %}
-        <div class="list-group col-2">
-
-            {# Render children category list #}
-            {% for obCategory in obParentCategory.children %}
-                <a class="list-group-item" href="{{ 'product_list'|page({'parent': obParentCategory.slug, 'slug': obCategory.slug}) }}">
-                    {{ obCategory.name }} ({{ obCategory.product_count }})
-                </a>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% partial 'category/category_description' obCategory=obParentCategory %}
+    </div>
+    <div class="uk-width-1-6">
+        {% partial 'right_panel/category_page' %}
+    </div>
 </div>

@@ -1,6 +1,6 @@
 title = "Brand page"
 url = "/brand/:slug"
-layout = "default"
+layout = "main"
 meta_title = "Brand page"
 is_hidden = 0
 
@@ -11,19 +11,25 @@ slug_required = 1
 {# Get brand item #}
 {% set obBrand = BrandPage.get() %}
 
-{% partial 'breadcrumbs/brand_list' sTitle = obBrand.name %}
+<div class="uk-grid">
+    <div class="uk-width-1-6"></div>
+    <div class="uk-width-2-3">
+        {% partial 'breadcrumbs/brand_list_page' sTitle = obBrand.name %}
+        {% partial 'common/page_title' sPageTitle = obBrand.name %}
 
-<div class="row">
-    <div class="mb-2 col-2">
-        {% if obBrand.preview_image is not empty %}
-            <img class="img-fluid" src="{{ obBrand.preview_image.path }}" alt="{{ obBrand.preview_image.description }}" title="{{ obBrand.preview_image.title }}">
-        {% endif %}
-   </div>
-    <div class="jumbotron col-9">
-        <h1 class="display-3">{{ obBrand.name }}</h1>
-        <p class="lead">{{ obBrand.preview_text }}</p>
-        <hr class="my-4">
-        {{ obBrand.description|raw }}
+        <div>
+            {% if obBrand.preview_image is not empty %}
+                <img class="uk-float-left uk-margin-medium-right uk-margin-small-bottom brand_list_item_img" src="{{ obBrand.preview_image.getThumb(200, 200) }}"
+                     alt="{{ obBrand.preview_image.description }}"
+                     title="{{ obBrand.preview_image.title }}">
+            {% else %}
+                <img class="uk-float-left uk-margin-medium-right uk-margin-small-bottom brand_list_item_img" src="{{ 'no-image.png'|media }}" alt="" title="">
+            {% endif %}
+            <p>{{ obBrand.preview_text }}</p>
+            {{ obBrand.description|raw }}
+        </div>
     </div>
-
+    <div class="uk-width-1-6">
+        {% partial 'right_panel/brand_page' %}
+    </div>
 </div>

@@ -1,51 +1,39 @@
 {# Get menu items #}
 {% set arMainMenu = staticMenuMain.menuItems() %}
-{% if arMainMenu is not empty %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" {% if this.page.id != 'index' %}href="/"{% endif %}>Home</a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-            {# Process parent menu items #}
-            {% for obParentMenuItem in arMainMenu if obParentMenuItem.viewBag.isHidden == false %}
+<header>
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" {% if this.page.id != 'index' %}href="/"{% endif %}>Home</a>
+            <ul class="uk-navbar-nav">
 
-                {# Set classes for menu item #}
-                {% set sItemClass = 'nav-item' %}
-                {% if obParentMenuItem.isActive or obParentMenuItem.isChildActive %}
-                    {% set sItemClass = sItemClass ~ ' active' %}
-                {% endif %}
-                {% if obParentMenuItem.items is not empty %}
-                    {% set sItemClass = sItemClass ~ ' dropdown' %}
-                {% endif %}
+                {# Process parent menu items #}
+                {% for obParentMenuItem in arMainMenu if obParentMenuItem.viewBag.isHidden == false %}
+                    <li class="{% if obParentMenuItem.isActive or obParentMenuItem.isChildActive %}uk-active{% endif %}">
+                        <a href="{{ obParentMenuItem.url }}">{{ obParentMenuItem.title }}</a>
 
-                <li class="{{ sItemClass }}">
-                    <a class="nav-link {% if obParentMenuItem.items is not empty %}dropdown-toggle{% endif %}"
-                       href="{{ obParentMenuItem.url }}"
-                       id="{{ obParentMenuItem.code }}"
-                    {% if obParentMenuItem.items is not empty %}
-                       data-toggle="dropdown"
-                       aria-haspopup="true"
-                       aria-expanded="false"
-                    {% endif %}
-                    >
-                        {{ obParentMenuItem.title }}
-                    </a>
+                        {# Process child menu items #}
+                        {% if obParentMenuItem.items is not empty %}
 
-                    {# Process child menu items #}
-                    {% if obParentMenuItem.items is not empty %}
-                        <div class="dropdown-menu" aria-labelledby="{{ obParentMenuItem.code }}">
-                            {% for obMenu in obParentMenuItem.items if obMenu.viewBag.isHidden == false %}
-                                <a class="dropdown-item {% if obMenu.isActive %}active{% endif %}" href="{{ obMenu.url }}">
-                                    {{ obMenu.title }}
-                                </a>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-        <a href="/test" class="navbar-text">
-          Cart
-        </a>
-    </div>
-</nav>
-{% endif %}
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    {% for obMenu in obParentMenuItem.items if obMenu.viewBag.isHidden == false %}
+                                        <li class="{% if obMenu.isActive %}uk-active{% endif %}">
+                                            <a href="{{ obMenu.url }}">{{ obMenu.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <div class="_cart_info_wrapper">
+                {% partial 'cart/cart_info' %}
+            </div>
+        </div>
+    </nav>
+</header>

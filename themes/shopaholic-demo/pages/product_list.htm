@@ -1,21 +1,47 @@
 title = "Product list"
 url = "/catalog/:parent/:slug"
-layout = "default"
+layout = "main"
 meta_title = "Product list"
 is_hidden = 0
 
-[CategoryPage ParentCategoryPage]
-slug = "{{ :parent }}"
-slug_required = 1
-
 [CategoryPage]
 slug = "{{ :slug }}"
+slug_required = 1
+
+[CategoryPage ParentCategoryPage]
+slug = "{{ :parent }}"
 slug_required = 1
 
 [CatalogBreadcrumbs]
 
 [ProductList]
 sorting = "new"
+
+[ProductData]
+
+[BrandList]
+
+[Pagination]
+count_per_page = 5
+pagination_limit = 5
+active_class = "uk-active"
+button_list = "prev,first,first-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
 ==
 {# Get parent category item #}
 {% set obParentCategory = ParentCategoryPage.get() %}
@@ -26,24 +52,77 @@ sorting = "new"
 {# Get breadcrumbs #}
 {% set arBreadcrumbs = CatalogBreadcrumbs.getByCategoryID(obCategory.id) %}
 
-{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+{# Get product collection, apply sorting and filters by active, category #}
+{% set obProductList =  ProductList.make().sort(ProductList.getSorting()).active().category(obCategory.id) %}
 
-<div class="row">
-    <div class="mb-2 col-2">
-        {% if obCategory.preview_image is not empty %}
-            <img class="img-fluid" src="{{ obCategory.preview_image.path }}"
-                 alt="{{ obCategory.preview_image.description }}" title="{{ obCategory.preview_image.title }}">
-        {% endif %}
+<div class="uk-grid">
+    <div class="uk-width-1-6"></div>
+    <div class="uk-width-2-3">
+        {% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+
+        {% partial 'category/category_info' obCategory=obCategory %}
+
+        <div class="uk-grid">
+            <div class="uk-width-1-5">
+                {% partial 'section/filter_pannel' obProductList=obProductList obCategory=obCategory %}
+            </div>
+            <div class="uk-width-4-5">
+                <div class="uk-child-width-1-1@m product_list_wrapper" uk-grid>
+                    {% partial 'ajax/ajax_product_list' obCategory=obCategory obProductList=obProductList %}
+                </div>
+            </div>
+        </div>
+
+        {% partial 'category/category_description' obCategory=obCategory %}
     </div>
-    <div class="jumbotron col-8">
-        <h1 class="display-3">{{ obCategory.name }}</h1>
-        <p class="lead">{{ obCategory.preview_text }}</p>
+    <div class="uk-width-1-6">
+        {% partial 'right_panel/product_list_page' %}
     </div>
 </div>
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-        {% partial 'ajax/ajax_product_list' obCategory=obCategory %}
+
+<!-- This is the modal with the outside close button -->
+<div class="uk-flex-top _modal_product uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-outside" type="button" uk-close></button>
+        <div class="_modal_product_wrapper"></div>
     </div>
-    <div class="col-2"></div>
 </div>
+
+{% put page_script %}
+    <script>
+
+        //Ajax pagination
+        $('body').on('click', '.uk-pagination a', function (e) {
+
+            e.preventDefault();
+            var _this = $(e.currentTarget),
+                iPage = _this.attr('data-page');
+
+            $('form#filter-panel').request('ProductList::onAjaxRequest', {
+                'data': {'page': iPage},
+                'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+            });
+        });
+
+        //Ajax filtration and sorting
+        $('body').on('change', 'form#filter-panel select', function (e) {
+            $('form#filter-panel').request('ProductList::onAjaxRequest', {
+                'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+            });
+        });
+
+        //Ajax filtration
+        $('body').on('change', 'form#filter-panel input', function (e) {
+            $('form#filter-panel').request('ProductList::onAjaxRequest', {
+                'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+            });
+        });
+
+        //Ajax filtration
+        $('body').on('change', 'form#filter-panel checkbox', function (e) {
+            $('form#filter-panel').request('ProductList::onAjaxRequest', {
+                'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+            });
+        });
+    </script>
+{% endput %}

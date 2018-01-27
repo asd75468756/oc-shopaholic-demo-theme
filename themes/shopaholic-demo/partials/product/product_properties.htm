@@ -1,0 +1,34 @@
+{# Render product properties #}
+{# Get property groups #}
+{% set obGroupList = obProduct.property.getGroupList().sort() %}
+
+{# Get property collection, apply sorting and filters by active #}
+{% set obPropertyList = obProduct.property.active().sort().save('product-property-list') %}
+
+{% if obGroupList.isNotEmpty() %}
+    <dl class="uk-description-list uk-width-1-2">
+        {% for obGroup in obGroupList %}
+            {# Get property collection, apply filters by group #}
+            {% set obPropertyList = obPropertyList.saved('product-property-list').group(obGroup.id) %}
+            {% if obPropertyList.isNotEmpty() %}
+                <dt>{{ obGroup.name }}</dt>
+                <dd>
+                    <ul class="uk-list ">
+                        {% for obProperty in obPropertyList if obProperty.hasValue() %}
+                            <li>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-expand" uk-leader>{{ obProperty.name }}
+                                        {% if obProperty.description is not empty %}
+                                            <span uk-icon="icon: question; ratio: 0.8" title="{{ obProperty.description }}" uk-tooltip></span>
+                                        {% endif %}
+                                    </div>
+                                    <div>{{ obProperty.property_value.getValueString() }} {{ obProperty.measure.name }}</div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            {% endif %}
+        {% endfor %}
+    </dl>
+{% endif %}

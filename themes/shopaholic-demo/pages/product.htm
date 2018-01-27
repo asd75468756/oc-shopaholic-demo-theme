@@ -1,6 +1,6 @@
 title = "Product page"
 url = "/product/:slug"
-layout = "default"
+layout = "main"
 meta_title = "Product page"
 is_hidden = 0
 
@@ -9,6 +9,9 @@ slug = "{{ :slug }}"
 slug_required = 1
 
 [CatalogBreadcrumbs]
+
+[ProductList]
+sorting = "new"
 ==
 {# Get product item #}
 {% set obProduct = ProductPage.get() %}
@@ -16,50 +19,58 @@ slug_required = 1
 {# Get breadcrumbs #}
 {% set arBreadcrumbs = CatalogBreadcrumbs.getByProductID(obProduct.id) %}
 
-{% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+<div class="uk-grid uk-margin-small-left">
+    <div class="uk-width-5-6">
+        <div class="uk-margin-small-bottom">
+            {% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
+        </div>
 
-<div class="row">
-    <div class="mb-2 col-2">
-        {% if obProduct.preview_image is not empty %}
-            <img class="img-fluid" src="{{ obProduct.preview_image.path }}"
-                 alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
-        {% else %}
-            <img class="img-fluid" src="{{ 'no-image.png'|media }}" alt="" title="">
-        {% endif %}
-    </div>
-    <div class="jumbotron col-8">
-        <h1 class="display-3">{{ obProduct.name }}</h1>
-        <h3>Vendor code: {{ obProduct.code }}</h3>
-        <p class="lead">{{ obProduct.preview_text }}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-        <ul class="nav nav-tabs" id="productData" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="offers-tab" data-toggle="tab" href="#offers" role="tab" aria-controls="offers" aria-selected="true">Offers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="properties-tab" data-toggle="tab" href="#properties" role="tab" aria-controls="properties" aria-selected="false">Properties</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-2"></div>
-</div>
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-        <div class="tab-content" id="productDataContent">
-            <div class="tab-pane fade show active" id="offers" role="tabpanel" aria-labelledby="offers-tab">
-                {% partial "product/offer_list" obProduct=obProduct %}
+        <div class="product_info_wrapper" uk-grid>
+            {% partial 'product/product_gallery' obProduct=obProduct %}
+            {% partial 'product/product_info' obProduct=obProduct %}
+        </div>
+
+        <hr class="uk-padding-remove uk-margin-remove-top">
+        <div>
+            <ul uk-tab="animation: uk-animation-fade">
+                {% if has_plugin('Lovata.RelatedProductsShopaholic') %}
+                    <li><a href="#">Related</a></li>
+                {% endif %}
+                <li><a href="#">Characteristics</a></li>
+                {% if has_plugin('Lovata.ReviewsShopaholic') %}
+                    <li><a href="#">Reviews</a></li>
+                {% endif %}
+                {% if has_plugin('Lovata.AccessoriesShopaholic') %}
+                    <li><a href="#">Accessories</a></li>
+                {% endif %}
+            </ul>
+
+            <div class="uk-switcher uk-margin">
+                {% if has_plugin('Lovata.RelatedProductsShopaholic') %}
+                <div>
+                    {% partial 'product/product_slider' %}
+                </div>
+                {% endif %}
+                <div>
+                    {% partial 'product/product_properties' obProduct=obProduct %}
+                </div>
+                {% if has_plugin('Lovata.ReviewsShopaholic') %}
+                <div>
+                    {% partial 'ajax/ajax_comment_list' %}
+                </div>
+                {% endif %}
+                {% if has_plugin('Lovata.AccessoriesShopaholic') %}
+                <div>
+                    {% partial 'product/product_slider' %}
+                </div>
+                {% endif %}
             </div>
-            <div class="tab-pane fade" id="properties" role="tabpanel" aria-labelledby="properties-tab"></div>
-            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab"></div>
+        </div>
+        <div class="uk-margin-small-top">
+            {% partial 'product/product_description' obProduct=obProduct %}
         </div>
     </div>
-    <div class="col-2"></div>
+    <div class="uk-width-1-6">
+        {% partial 'right_panel/product_page' %}
+    </div>
 </div>

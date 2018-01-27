@@ -1,3 +1,8 @@
-Mobile,mobile,mobile,Preview text. Category Mobile,<p>Description text. Category <strong>Mobile</strong></p>,0,1,1,6,lovata/basecode/assets/img/mobile_preview_image.png
-Phones,phones,phones,Preview text. Category Phones,<p>Description text. Category <strong>Phones</strong></p>,1,2,2,3,lovata/basecode/assets/img/phones_preview_image.png
-Tablets,tablets,tablets,Preview text. Category Tablets,<p>Description text. Category <strong>Tablets</strong></p>,1,2,4,5,lovata/basecode/assets/img/tablet_preview_image.png
+Women,women,0,1,1,8,women.jpg
+Jeans,jeans-women,1,2,2,3,jeans_women.png
+T-shirts,t-shirts-women,1,2,4,5,t_shirts_women.jpg
+Skirts,skirts,1,2,6,7,skirts.jpg
+Man,man,0,1,9,16,man.jpg
+Shirts,shirts-man,5,2,10,11,shirts_man.jpg
+T-shirts,t-shirts-man,5,2,12,13,t_shirts_man.jpg
+Ties,ties,5,2,14,15,ties.png
