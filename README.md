@@ -19,6 +19,8 @@ php artisan october:up
   * [Translate](http://octobercms.com/plugin/rainlab-translate) - required
   * [Toolbox](http://octobercms.com/plugin/lovata-toolbox) - required
   * [Shopaholic](http://octobercms.com/plugin/lovata-shopaholic) - required
+  * [Orders for Shopaholic](http://octobercms.com/plugin/lovata-ordersshopaholic) - required
+  * [Buddies](http://octobercms.com/plugin/lovata-buddies) - required
 7. Run database migrations
 ```bash
 php artisan october:up
