@@ -14,7 +14,7 @@
                         {# Process child menu items #}
                         {% if obParentMenuItem.items is not empty %}
 
-                            <div class="uk-navbar-dropdown">
+                            <div class="uk-navbar-dropdown uk-margin-remove-top">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     {% for obMenu in obParentMenuItem.items if obMenu.viewBag.isHidden == false %}
                                         <li class="{% if obMenu.isActive %}uk-active{% endif %}">

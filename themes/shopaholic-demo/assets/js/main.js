@@ -162,10 +162,10 @@ $('body').on('submit', '._make_order_form', function (e) {
     var _this = $(e.currentTarget),
         data = {
             'order': {
-                'payment_method_id': _this.find('input[name="payment_method_id"]').val(),
-                'shipping_type_id': _this.find('input[name="shipping_type_id"]').val(),
+                'payment_method_id': _this.find('input[name="payment_method_id"]:checked').val(),
+                'shipping_type_id': _this.find('input[name="shipping_type_id"]:checked').val(),
                 'property': {
-                    'address': _this.find('input[name="shipping_type_id"]').val()
+                    'address': _this.find('input[name="address"]').val()
                 }
             },
             'user': {

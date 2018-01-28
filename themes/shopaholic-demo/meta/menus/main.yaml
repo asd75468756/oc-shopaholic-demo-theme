@@ -35,3 +35,15 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+        items:
+            -
+                title: 'Category list'
+                nesting: '0'
+                type: shop-catalog
+                code: ''
+                cmsPage: category
+                replace: '1'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
