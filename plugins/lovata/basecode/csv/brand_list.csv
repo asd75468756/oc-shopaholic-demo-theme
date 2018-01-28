@@ -1,17 +1,18 @@
-Womens Secrets,women-secrets,women_secrets.png
-Calvin Klein,calvin-klein,calvin_klein.jpg
-Adidas,adidas,adidas.png
-Armani,armani,armani.jpg
-Zara,zara,zara.jpg
-Diesel,diesel,diesel.png
-Kenzo,kenzo,kenzo.png
-Prada,prada,prada.jpg
-LMD,lmd,lmd.png
-oodji,oodji,oodji.jpg
-Eton,eton,eton.jpg
-Boss,boss,boss.png
-Mont Blanc,mont-blanc,mont_blanc.jpg
-Guess,guess,guess.jpg
-Allen Solly,allen-solly,allen_solly.jpg
-Jaeger,jaeger,jaeger.png
-Nautica,nautica,nautica.jpeg
+id,name,slug,preview_image
+1,Womens Secrets,women-secrets,women_secrets.png
+2,Calvin Klein,calvin-klein,calvin_klein.jpg
+3,Adidas,adidas,adidas.png
+4,Armani,armani,armani.jpg
+5,Zara,zara,zara.jpg
+6,Diesel,diesel,diesel.png
+7,Kenzo,kenzo,kenzo.png
+8,Prada,prada,prada.jpg
+9,LMD,lmd,lmd.png
+10,oodji,oodji,oodji.jpg
+11,Eton,eton,eton.jpg
+12,Boss,boss,boss.png
+13,Mont Blanc,mont-blanc,mont_blanc.jpg
+14,Guess,guess,guess.jpg
+15,Allen Solly,allen-solly,allen_solly.jpg
+16,Jaeger,jaeger,jaeger.png
+17,Nautica,nautica,nautica.jpeg

@@ -25,10 +25,12 @@ php artisan october:up
 ```bash
 php artisan october:up
 ```
-8. Reinstall Lovata.BaseCode plugin
+8. Reinstall Lovata.OrdersShopaholic and Lovata.BaseCode plugins
 ```bash
+php artisan plugin:refresh Lovata.OrdersShopaholic
 php artisan plugin:refresh Lovata.BaseCode
+php artisan cache:clear
 ```
 
-**If you add new extensions of [Shopaholic](http://octobercms.com/plugin/lovata-shopaholic) plugin, you can reinstall the Lovata.BaseCode plugin.
+**If you add new extensions of [Shopaholic](http://octobercms.com/plugin/lovata-shopaholic) plugin, you can reinstall Lovata.OrdersShopaholic and Lovata.BaseCode plugins.
 Database will be automatically filled with test data**
