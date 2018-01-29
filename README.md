@@ -2,7 +2,7 @@
 
 1. Use the composer update command
 ```bash
-use the composer update command
+composer install
 ```
 2. Create clear database
 3. Copy file .env.example => .env
@@ -16,7 +16,7 @@ php artisan october:up
 ```
 6. Install plugins:
   * [Static Pages](http://octobercms.com/plugin/rainlab-pages) - required
-  * [Translate](http://octobercms.com/plugin/rainlab-translate) - required
+  * [Twig Extensions](http://octobercms.com/plugin/vojtasvoboda-twigextensions) - required
   * [Toolbox](http://octobercms.com/plugin/lovata-toolbox) - required
   * [Shopaholic](http://octobercms.com/plugin/lovata-shopaholic) - required
   * [Orders for Shopaholic](http://octobercms.com/plugin/lovata-ordersshopaholic) - required
