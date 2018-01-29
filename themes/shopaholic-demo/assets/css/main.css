@@ -35,3 +35,7 @@ body {
 .product_info_wrapper {
     height: 660px
 }
+
+.product_small_card_title {
+    height: 60px;
+}
