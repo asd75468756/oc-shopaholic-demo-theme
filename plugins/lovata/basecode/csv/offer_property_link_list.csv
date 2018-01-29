@@ -1,1 +1,3 @@
 id,property_id,category_id,group,in_filter,filter_type
+1,1,2,0,1,checkbox
+2,1,3,0,1,checkbox

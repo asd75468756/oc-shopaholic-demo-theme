@@ -1,1 +1,44 @@
 id,property_id,model,value,product_id
+1,2,product,Jeans,1,2
+2,3,product,Capri,2
+3,4,product,Destroy Wash,2|3|5|6|7
+4,5,product,Skinny,2|3|5|9|10|6|7|8
+5,1,offer,S,1|4|8|13|18|21|25|29|32|35
+6,1,offer,M,2|5|9|10|14|16|19|22|26|30|33|36|39
+7,1,offer,L,3|6|11|15|17|20|23|27|31|34|37|40
+8,1,offer,XL,7|12|24|28|38
+9,6,product,Blue,2|4|10|6|7
+10,6,product,White,3
+11,2,product,Cotton,3|10|6|7|8|12
+12,2,product,Polyester,3|4|5|9|10|6|7|8|11|12|13
+13,3,product,Normal,3|4|5|10|7|8
+14,7,product,Pockets,3|7
+15,7,product,Ripped,3|5|7|8
+16,8,product,Elastic,3
+17,4,product,Light,4
+18,5,product,Regular,4
+19,7,product,Lace,4|1
+20,6,product,Denim Blue,5
+21,2,product,Spandex,5|11|13
+22,6,product,Black,9|11
+23,3,product,Ninth,9|6
+24,4,product,Dark,9|10
+25,7,product,Embroidery,10
+26,6,product,Red,8|13
+27,4,product,Colored,8
+28,6,product,Light Blue,1
+29,5,product,Straight,1
+30,3,product,Knee-Length,1
+32,9,product,Regular,11|12|13
+33,10,product,Sleeveless,11
+34,11,product,Fashion,11|13
+35,12,product,Fall,11|12|13
+36,12,product,Spring,11|12|13
+37,12,product,Summer,11
+38,13,product,Solid,11|13
+39,6,product,Cadetblue,12
+40,10,product,Three Quarter,12
+41,11,product,Casual,12
+42,13,product,Floral,12
+43,10,product,Full,13
+44,12,product,Winter,13

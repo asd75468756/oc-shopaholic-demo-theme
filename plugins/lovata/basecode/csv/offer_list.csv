@@ -1,4 +1,41 @@
 id,name,code,price,old_price,product_id
-1,Destroyed Cropped Jeans - Blue - S,1202-0001-S,23.20,45.15,1
-2,Destroyed Cropped Jeans - Blue - M,1202-0001-M,23.20,45.15,1
-3,Destroyed Cropped Jeans - Blue - L,1202-0001-L,23.20,45.15,1
+1,Destroyed Cropped Jeans - Blue - S,1202-0001-S,23.20,45.15,2
+2,Destroyed Cropped Jeans - Blue - M,1202-0001-M,23.20,45.15,2
+3,Destroyed Cropped Jeans - Blue - L,1202-0001-L,23.20,45.15,2
+4,Distressed Skinny Jeans - White - S,1205-0002-S,19.93,34.46,3
+5,Distressed Skinny Jeans - White - M,1205-0002-M,19.93,34.46,3
+6,Distressed Skinny Jeans - White - L,1205-0002-L,19.93,34.46,3
+7,Distressed Skinny Jeans - White - XL,1205-0002-XL,19.93,34.46,3
+8,Lace Insert Staright Jeans - Blue - S,1205-0003-S,27.02,0,4
+9,Lace Insert Staright Jeans - Blue - M,1205-0003-M,27.02,0,4
+10,Ripped Raw Hem Side Stripe Jeans - Denim Blue - M,1208-0004-M,21.11,45.02,5
+11,Ripped Raw Hem Side Stripe Jeans - Denim Blue - L,1208-0004-L,21.11,45.02,5
+12,Ripped Raw Hem Side Stripe Jeans - Denim Blue - XL,1208-0004-XL,21.11,45.02,5
+13,Skinny High Waist Jeans - Black - S,1205-0005-S,24.09,30.11,9
+14,Skinny High Waist Jeans - Black - M,1205-0005-M,24.09,30.11,9
+15,Skinny High Waist Jeans - Black - L,1205-0005-L,24.09,30.11,9
+16,Floral Embroidered Skinny High Waisted Jeans - Blue - M,1210-0006-M,17.41,36.85,10
+17,Floral Embroidered Skinny High Waisted Jeans - Blue - L,1210-0006-L,17.41,36.85,10
+18,Skinny Frayed Ripped Jeans - Blue - S,1210-0007-S,16.11,34.44,6
+19,Skinny Frayed Ripped Jeans - Blue - M,1210-0007-M,16.11,34.44,6
+20,Skinny Frayed Ripped Jeans - Blue - L,1210-0007-L,16.11,34.44,6
+21,Two Tone Color Ripped Jeans - Blue - S,1202-0008-S,22.35,33.57,7
+22,Two Tone Color Ripped Jeans - Blue - M,1202-0008-M,22.35,33.57,7
+23,Two Tone Color Ripped Jeans - Blue - L,1202-0008-L,22.35,33.57,7
+24,Two Tone Color Ripped Jeans - Blue - XL,1202-0008-XL,22.35,33.57,7
+25,Distressed High Rise Colored Skinny Jeans - Red - S,1204-0009-S,24.01,0,8
+26,Distressed High Rise Colored Skinny Jeans - Red - M,1204-0009-M,24.01,0,8
+27,Distressed High Rise Colored Skinny Jeans - Red - L,1204-0009-L,24.01,0,8
+28,Distressed High Rise Colored Skinny Jeans - Red - XL,1204-0009-XL,24.01,0,8
+29,Knee Length Lace Insert Denim Shorts - Light Blue - S,1204-0010-S,18.47,36.07,1
+30,Knee Length Lace Insert Denim Shorts - Light Blue - M,1204-0010-M,18.47,36.07,1
+31,Knee Length Lace Insert Denim Shorts - Light Blue - L,1204-0010-L,18.47,36.07,1
+32,Off The Shoulder Crochet Trimmed Rib Top - Black - S,1305-0011-S,13.49,23.16,11
+33,Off The Shoulder Crochet Trimmed Rib Top - Black - M,1305-0011-M,13.49,23.16,11
+34,Off The Shoulder Crochet Trimmed Rib Top - Black - L,1305-001-L,13.49,23.16,11
+35,Cold Shoulder Floral Cut Out T-shirt - Cadetblue - S,1307-0012-S,16.54,0,12
+36,Cold Shoulder Floral Cut Out T-shirt - Cadetblue - M,1307-0012-M,16.54,0,12
+37,Cold Shoulder Floral Cut Out T-shirt - Cadetblue - L,1307-0012-L,16.54,0,12
+38,Cold Shoulder Floral Cut Out T-shirt - Cadetblue - XL,1307-0012-XL,16.54,0,12
+39,Sequins Cold Shoulder Long Sleeve T-shirt - Red - M,1301-0013-M,13.94,0,13
+40,Sequins Cold Shoulder Long Sleeve T-shirt - Red - L,1301-0013-L,13.94,0,13

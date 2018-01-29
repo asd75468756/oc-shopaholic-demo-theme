@@ -28,6 +28,8 @@ class SeederProduct extends AbstractModelSeeder
         $this->fillPreviewText('Product');
         $this->fillDescription('Product');
 
+        $this->obModel->popularity = random_int(0,1000);
+
         $this->createModelImages('product');
     }
 }
