@@ -76,7 +76,11 @@ abstract class AbstractModelSeeder extends Seeder
 
 
         $sModelName = $this->getModelName();
-        $this->obModel = $sModelName::create($this->arModelData);
+        try {
+            $this->obModel = $sModelName::create($this->arModelData);
+        } catch (\October\Rain\Database\ModelException $obException) {
+            echo $obException->getMessage();
+        }
     }
 
     /**

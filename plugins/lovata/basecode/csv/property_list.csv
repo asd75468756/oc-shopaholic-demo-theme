@@ -8,7 +8,7 @@ id,name,type,measure_id,description,sort,value
 7,Embellishment,checkbox,0,,7,Pockets|Ripped|Lace|Embroidery
 8,Elasticity,select,0,,8,Elastic
 9,Shirt Length,select,0,,9,Regular
-10,Sleeve Length,select,0,,10,Sleeveless|Three Quarter|Full
+10,Sleeve Length,select,0,,10,Sleeveless|Three Quarter|Full|Short
 11,Style,select,0,,11,Fashion|Casual
 12,Season,select,0,,12,Fall|Spring|Summer|Winter
-13,Pattern Type,select,0,,13,Solid|Floral
+13,Pattern Type,select,0,,13,Solid|Floral|Butterfly|Print
