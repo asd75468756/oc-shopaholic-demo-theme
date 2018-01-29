@@ -12,3 +12,8 @@ id,property_id,category_id,group,in_filter,filter_type
 11,11,3,1,1,checkbox
 12,12,3,2,1,select
 13,13,3,1,1,checkbox
+14,6,6,1,1,select
+15,2,6,1,1,checkbox
+16,2,3,1,1,checkbox
+17,10,6,2,1,checkbox
+18,13,6,1,1,checkbox

@@ -1,6 +1,6 @@
 id,name,type,measure_id,description,sort,value
 1,Size,select,0,,1,S|M|L|XL
-2,Material,checkbox,0,,3,Jean|Cotton|Polyester|Spandex
+2,Material,checkbox,0,,3,Jean|Cotton|Polyester|Spandex|Blends
 3,Length,select,0,,4,Capri|Normal|Ninth|Knee-Length
 4,Wash,input,0,,5,
 5,Fit Type,select,0,,6,Skinny|Regular|Straight
