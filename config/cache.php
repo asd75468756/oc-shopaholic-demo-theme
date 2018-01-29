@@ -76,6 +76,6 @@ return [
     |
     */
 
-    'prefix' => 'october-shopaholic',
+    'prefix' => 'demo-shopaholic',
 
 ];
