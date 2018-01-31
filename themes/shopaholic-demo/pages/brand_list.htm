@@ -31,9 +31,8 @@ last_button_limit = 3
 [viewBag]
 localeUrl[my] = "/brand-list"
 ==
-<div class="uk-grid">
-    <div class="uk-width-1-6"></div>
-    <div class="uk-width-2-3">
+<div class="uk-grid uk-margin-remove-left">
+    <div class="uk-width-5-6">
         {% partial 'breadcrumbs/brand_list_page' %}
         {% partial 'common/page_title' sPageTitle=this.page.title %}
         <div class="brand_list_wrapper">

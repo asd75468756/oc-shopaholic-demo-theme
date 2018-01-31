@@ -55,11 +55,9 @@ last_button_limit = 3
 {# Get product collection, apply sorting and filters by active, category #}
 {% set obProductList =  ProductList.make().sort(ProductList.getSorting()).active().category(obCategory.id) %}
 
-<div class="uk-grid">
-    <div class="uk-width-1-6"></div>
-    <div class="uk-width-2-3">
+<div class="uk-grid uk-margin-remove-left">
+    <div class="uk-width-5-6">
         {% partial 'breadcrumbs/catalog' arBreadcrumbs=arBreadcrumbs %}
-
         {% partial 'category/category_info' obCategory=obCategory %}
 
         <div class="uk-grid">
