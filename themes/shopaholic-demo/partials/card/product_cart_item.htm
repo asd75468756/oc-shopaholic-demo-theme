@@ -126,14 +126,16 @@
                         </div>
                     </fieldset>
                 {% endif %}
-                <div class="uk-card-footer uk-position-bottom product_cart_footer uk-padding-small uk-text-right">
-                    <div class="uk-position-center-left uk-text-middle uk-margin-small-left">
+                <div class="uk-card-footer uk-flex uk-flex-middle uk-flex-between uk-width-auto">
+                    <div class="uk-width-2-5 uk-text-left">
                         {% partial 'product/product_rating' obProduct=obProduct %}
                     </div>
-                    <button class="uk-margin-small-right" uk-icon="icon: heart; ratio: 1.5"></button>
-                    <button class="uk-button uk-button-default uk-width-1-5 _offer_update_cart_button" type="submit">Update</button>
-                    <button class="uk-button uk-button-danger uk-width-1-5 uk-hidden _offer_add_cart_button">Add to cart</button>
-                    <button class="uk-button uk-button-secondary uk-width-1-5 _offer_remove_cart_button">Remove</button>
+                    <div class="uk-width-3-5 uk-flex-around uk-text-right">
+                        <button class="uk-margin-small-right" uk-icon="icon: heart; ratio: 1.5"></button>
+                        <button class="uk-button uk-button-default uk-width-2-5 _offer_update_cart_button" type="submit">Update</button>
+                        <button class="uk-button uk-button-danger uk-width-2-5 uk-hidden _offer_add_cart_button">Add to cart</button>
+                        <button class="uk-button uk-button-secondary uk-width-2-5 _offer_remove_cart_button">Remove</button>
+                    </div>
                 </div>
             </div>
         </div>

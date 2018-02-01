@@ -1,19 +1,6 @@
 body {
     background-color: #f7f7f7;
-}
-
-.brand_list_item_img {
-     height: 200px;
- }
-
-.product_cart_wrapper {
-    max-height: 330px;
-}
-
-
-
-.product_cart_footer {
-    margin-left: 250px;
+    min-width: 1200px;
 }
 
 .filter_between {
@@ -45,4 +32,16 @@ body {
 
 .slider-item{
     width: 300px;
+}
+
+.right-panel_width{
+    max-width: 195px;
+}
+
+.uk-alert-close , .uk-alert-primary{
+    font-size: small;
+}
+
+.uk-button{
+    max-width: 130px;
 }
