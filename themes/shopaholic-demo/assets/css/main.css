@@ -10,6 +10,8 @@ body {
     max-height: 330px;
 }
 
+
+
 .product_cart_footer {
     margin-left: 250px;
 }
@@ -39,4 +41,8 @@ body {
 
 .product_small_card_title {
     height: 60px;
+}
+
+.slider-item{
+    width: 300px;
 }

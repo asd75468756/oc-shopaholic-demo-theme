@@ -1,6 +1,6 @@
 <div>
-    <div class="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-margin uk-text-middle product_cart_wrapper" data-id="{{ obProduct.id }}" uk-grid>
-        <div class="uk-card-media-left">
+    <div class="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-margin uk-text-middle" data-id="{{ obProduct.id }}" uk-grid>
+        <div class="uk-card-media-left uk-card">
             {# Render preview image #}
             <a href="{{ 'product'|page({'slug': obProduct.slug}) }}">
                 {% if obProduct.preview_image is not empty %}
@@ -12,11 +12,11 @@
                 {% endif %}
             </a>
         </div>
-        <div class="uk-width-expand">
+        <div class="uk-width-expand ">
             <div class="uk-card-header uk-padding-small">
                 <div class="uk-grid">
                     <div class="uk-width-4-5">
-                        <h3 class="uk-card-title">
+                        <h3 class="uk-card-title  uk-text-truncate">
                             <a href="{{ 'product'|page({'slug': obProduct.slug}) }}">{{ obProduct.name }}</a>
                         </h3>
                     </div>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="uk-card-body uk-padding-small">
+            <div class="uk-card-body uk-padding-small uk-position-center ">
                 {# Render preview text #}
                 <p>{{ obProduct.preview_text| truncate(150) }}</p>
 
