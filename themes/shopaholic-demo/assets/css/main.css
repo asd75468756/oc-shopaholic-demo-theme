@@ -82,3 +82,18 @@ body {
     height: 25px;
     margin-bottom: 15px;
 }
+
+.badge_new{
+    top: 5px;
+    left: 5px;
+}
+
+.badge_bestprice{
+    top: 30px;
+    left: 5px;
+}
+
+.tag{
+    margin: 1px 10px 0 0;
+    display: inline-block;
+}
