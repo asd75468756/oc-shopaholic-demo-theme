@@ -31,7 +31,7 @@ body {
 }
 
 .slider-item{
-    width: 300px;
+    width: 305px;
 }
 
 .right-panel_width{
@@ -44,4 +44,41 @@ body {
 
 .uk-button{
     max-width: 130px;
+}
+
+.container{
+    padding: 0 100px !important;
+    margin-bottom: 25px;
+}
+
+.product-slider{
+    padding-left: 50px;
+}
+
+.product_sliders{
+    padding-top: 50px;
+}
+
+.slider-label{
+    padding-left: 10px;
+}
+
+.commentary-area{
+    width: 400px;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.uk-button-primary{
+    max-width: 200px !important;
+}
+
+.user-name-label, .user-surname-label{
+    margin: 0;
+}
+
+.user-name-input, .user-surname-input{
+    width: 200px;
+    height: 25px;
+    margin-bottom: 15px;
 }

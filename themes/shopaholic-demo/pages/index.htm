@@ -3,10 +3,12 @@ url = "/"
 layout = "main"
 meta_title = "OctoberCMS - Shopaholic plugin"
 is_hidden = 0
-==
 
-<div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="ratio: 7:3; autoplay: true">
-    <ul class="uk-slideshow-items">
+[ProductList]
+==
+<div class="container">
+<div class="uk-position-relative uk-visible-toggle uk-light uk" uk-slideshow="ratio: 7:3; autoplay: true" >
+    <ul class="uk-slideshow-items plugin-slider">
         <li>
                 <img src="/plugins/lovata/basecode/assets/img/shopoholic_bunner.png" alt="" uk-cover>
                 <div class="uk-overlay uk-position-bottom-right uk-text-center">
@@ -67,4 +69,17 @@ is_hidden = 0
 
     <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+</div>
+<div class="product_sliders">
+{% set obProductList = ProductList.make().active().random(8) %}
+
+<p class="uk-text-lead uk-text-large slider-lavel">Label 1</p>        
+{% partial 'product/product_slider' obProductList=obProductList %}
+
+<p class="uk-text-lead uk-text-large">Label 2</p>        
+{% partial 'product/product_slider' obProductList=obProductList %}
+
+<p class="uk-text-lead uk-text-large">Label 3</p>        
+{% partial 'product/product_slider' obProductList=obProductList %}
+</div>
 </div>

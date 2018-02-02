@@ -16,21 +16,21 @@
             <div class="uk-card-header uk-padding-small">
                 <div class="uk-grid">
                     <div class="uk-width-4-5">
-                        <h3 class="uk-card-title  uk-text-truncate">
+                        <h3 class="uk-card-title">
                             <a href="{{ 'product'|page({'slug': obProduct.slug}) }}">{{ obProduct.name }}</a>
                         </h3>
                     </div>
                     {# Render price block #}
                     <div class="uk-width-1-5 uk-padding-small uk-padding-remove-top uk-padding-remove-bottom uk-text-right">
                         {% set obOffer = obProduct.offer.active().first() %}
-                        <strong class="uk-text-danger">{{ obOffer.price }} {{ obOffer.currency }}</strong>
+                        <strong class="uk-text-danger">{{ obOffer.price }} {{ obOffer.currency }}</strong><br>
                         {% if obOffer.old_price_value > 0 %}
-                            <s class="uk-margin-small-left">{{ obOffer.old_price }} {{ obOffer.currency }}</s>
+                            <s class="uk-margin-small-left">{{ obOffer.old_price }} {{obOffer.currency }}</s>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="uk-card-body uk-padding-small ">
+            <div class="uk-card-body  uk-padding-small">
                 {# Render preview text #}
                 <p>{{ obProduct.preview_text| truncate(150) }}</p>
 
