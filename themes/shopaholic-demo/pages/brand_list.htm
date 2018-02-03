@@ -41,21 +41,3 @@ localeUrl[my] = "/brand-list"
     </div>
     {% partial 'right_panel/right_common_panel' %}
 </div>
-
-{% put page_script %}
-<script>
-
-    //Ajax pagination
-    $('body').on('click', '.uk-pagination a', function (e) {
-
-        e.preventDefault();
-        var _this = $(e.currentTarget),
-            iPage = _this.attr('data-page');
-
-        $.request('BrandList::onAjaxRequest', {
-            'data': {'page': iPage},
-            'update': {'ajax/ajax_brand_list': '.brand_list_wrapper'}
-        });
-    });
-</script>
-{% endput %}

@@ -11,6 +11,10 @@
                 {% if has_plugin('Lovata.PopularityShopaholic') %}
                     <option value="popularity|desc">Popularity</option>
                 {% endif %}
+                {% if has_plugin('Lovata.ReviewsShopaholic') %}
+                    <option value="rating|desc">High rating</option>
+                    <option value="rating|asc">Low rating</option>
+                {% endif %}
             </select>
         </div>
         <hr>
@@ -157,17 +161,17 @@
         {% endif %}
 
     </fieldset>
-    <hr>
-    <div class="tags-filter">
-        <p class="uk-text-large">Tags</p>
-        <div class="tags">
-            <span class="tag">Blue</span>
-            <span class="tag">Man</span>
-            <span class="tag">Jeans</span>
-            <span class="tag">Woman</span>
-            <span class="tag">T-Shirt</span>
-            <span class="tag">Red</span>
-            <span class="tag">Black</span>
-        </div>
-    </div>
+    {#<hr>#}
+    {#<div class="tags-filter">#}
+        {#<p class="uk-text-large">Tags</p>#}
+        {#<div class="tags">#}
+            {#<span class="tag">Blue</span>#}
+            {#<span class="tag">Man</span>#}
+            {#<span class="tag">Jeans</span>#}
+            {#<span class="tag">Woman</span>#}
+            {#<span class="tag">T-Shirt</span>#}
+            {#<span class="tag">Red</span>#}
+            {#<span class="tag">Black</span>#}
+        {#</div>#}
+    {#</div>#}
 </form>

@@ -208,3 +208,78 @@ $('body').on('click', '._open_product_modal', function (e) {
         }
     });
 });
+
+//Ajax pagination (brand list)
+$('body').on('click', '.brand_list_wrapper .uk-pagination a', function (e) {
+
+    e.preventDefault();
+    var _this = $(e.currentTarget),
+        iPage = _this.attr('data-page');
+
+    $.request('BrandList::onAjaxRequest', {
+        'data': {'page': iPage},
+        'update': {'ajax/ajax_brand_list': '.brand_list_wrapper'}
+    });
+});
+
+//Ajax pagination (product list)
+$('body').on('click', '.product_list_wrapper .uk-pagination a', function (e) {
+
+    e.preventDefault();
+    var _this = $(e.currentTarget),
+        iPage = _this.attr('data-page');
+
+    $('form#filter-panel').request('ProductList::onAjaxRequest', {
+        'data': {'page': iPage},
+        'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+    });
+});
+
+//Ajax filtration and sorting
+$('body').on('change', 'form#filter-panel select', function (e) {
+    $('form#filter-panel').request('ProductList::onAjaxRequest', {
+        'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+    });
+});
+
+//Ajax filtration
+$('body').on('change', 'form#filter-panel input', function (e) {
+    $('form#filter-panel').request('ProductList::onAjaxRequest', {
+        'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+    });
+});
+
+//Ajax filtration
+$('body').on('change', 'form#filter-panel checkbox', function (e) {
+    $('form#filter-panel').request('ProductList::onAjaxRequest', {
+        'update': {'ajax/ajax_product_list': '.product_list_wrapper'}
+    });
+});
+
+//Ajax pagination (review list)
+$('body').on('click', '.review_list_wrapper .uk-pagination a', function (e) {
+
+    e.preventDefault();
+    var _this = $(e.currentTarget),
+        iPage = _this.attr('data-page');
+
+    $.request('ProductData::onAjaxRequest', {
+        'data': {'page': iPage},
+        'update': {'ajax/ajax_review_list': '.review_list_wrapper'}
+    });
+});
+
+//Create new review
+$('body').on('submit', '.create_review_form', function (e) {
+
+    e.preventDefault();
+
+    $('.create_review_form').request('MakeReview::onCreate', {
+        update: {'ajax/ajax_review_list': '.review_list_wrapper'},
+        complete: function () {
+            UIkit.modal('#review-modal').hide();
+            $('.create_review_form input[name="name"]').val('');
+            $('.create_review_form textarea').val('');
+        }
+    });
+});

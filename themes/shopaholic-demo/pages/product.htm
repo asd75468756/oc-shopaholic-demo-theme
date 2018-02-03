@@ -10,8 +10,32 @@ slug_required = 1
 
 [CatalogBreadcrumbs]
 
-[ProductList]
-sorting = "new"
+[ProductData]
+
+[Pagination]
+count_per_page = 5
+pagination_limit = 5
+active_class = "uk-active"
+button_list = "prev,first,first-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
+
+[MakeReview]
+mode = "ajax"
 ==
 {# Get product item #}
 {% set obProduct = ProductPage.get() %}
@@ -31,41 +55,46 @@ sorting = "new"
         </div>
 
         <hr class="uk-padding-remove uk-margin-remove-top">
+
+        {% set obRelatedProductList = obProduct.related %}
+        {% set obAccessoryProductList = obProduct.accessory %}
         <div>
             <ul uk-tab="animation: uk-animation-fade">
-                {#{% if has_plugin('Lovata.RelatedProductsShopaholic') %}#}
-                    <li><a href="#">Related</a></li>
-                {#{% endif %}#}
+                {% if has_plugin('Lovata.PropertiesShopaholic') %}
                 <li><a href="#">Characteristics</a></li>
-                {#{% if has_plugin('Lovata.ReviewsShopaholic') %}#}
+                {% endif %}
+                {% if has_plugin('Lovata.ReviewsShopaholic') %}
                     <li><a href="#">Reviews</a></li>
-                {#{% endif %}#}
-                {#{% if has_plugin('Lovata.AccessoriesShopaholic') %}#}
+                {% endif %}
+                {% if has_plugin('Lovata.RelatedProductsShopaholic') and obRelatedProductList.isNotEmpty() %}
+                <li><a href="#">Related</a></li>
+                {% endif %}
+                {% if has_plugin('Lovata.AccessoriesShopaholic') and obAccessoryProductList.isNotEmpty() %}
                     <li><a href="#">Accessories</a></li>
-                {#{% endif %}#}
+                {% endif %}
             </ul>
 
             <div class="uk-switcher uk-margin">
-                {#{% if has_plugin('Lovata.RelatedProductsShopaholic') %}#}
-                <div>
-                    {% set obProductList = ProductList.make().active().random(8) %}
-                    {% partial 'product/product_slider' obProductList=obProductList %}
-                </div>
-                {#{% endif %}#}
+                {% if has_plugin('Lovata.PropertiesShopaholic') %}
                 <div>
                     {% partial 'product/product_properties' obProduct=obProduct %}
                 </div>
-                {#{% if has_plugin('Lovata.ReviewsShopaholic') %}#}
+                {% endif %}
+                {% if has_plugin('Lovata.RelatedProductsShopaholic') and obRelatedProductList.isNotEmpty() %}
                 <div>
-                    {% partial 'ajax/ajax_comment_list' %}
+                    {% partial 'product/product_slider' obProductList=obRelatedProductList %}
                 </div>
-                {#{% endif %}#}
-                {#{% if has_plugin('Lovata.AccessoriesShopaholic') %}#}
+                {% endif %}
+                {% if has_plugin('Lovata.ReviewsShopaholic') %}
                 <div>
-                        {% set obProductList = ProductList.make().active().random(8) %}
-                        {% partial 'product/product_slider' obProductList=obProductList %}
+                    {% partial 'section/review_list_wrapper' obProduct=obProduct %}
                 </div>
-                {#{% endif %}#}
+                {% endif %}
+                {% if has_plugin('Lovata.AccessoriesShopaholic')  and obAccessoryProductList.isNotEmpty() %}
+                <div>
+                    {% partial 'product/product_slider' obProductList=obAccessoryProductList %}
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="uk-margin-small-top">

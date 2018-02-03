@@ -2,7 +2,7 @@
     {% partial 'common/page_title' sPageTitle=obProduct.name %}
 
     <div class="uk-text-middle">
-        {% partial 'product/product_rating' obProduct=obProduct %}
+        {% partial 'product/product_rating' iRating=obProduct.rating %}
     </div>
 
     {% if obProduct.brand.isNotEmpty() %}

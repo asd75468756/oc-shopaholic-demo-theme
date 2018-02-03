@@ -22,7 +22,7 @@
                     <s class="uk-margin-small-left">{{ obOffer.old_price }} {{ obOffer.currency }}</s>
                 {% endif %}
                 <div>
-                    {% partial 'product/product_rating' obProduct=obProduct ration=1 %}
+                    {% partial 'product/product_rating' iRating=obProduct.rating ration=1 %}
                 </div>
             </div>
             <div class="uk-width-expand uk-text-right uk-padding-remove">

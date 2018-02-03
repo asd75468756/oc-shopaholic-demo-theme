@@ -15,3 +15,4 @@
     - seeder_order_property.php
     - seeder_payment_method.php
     - seeder_shipping_type.php
+    - seeder_reviews.php

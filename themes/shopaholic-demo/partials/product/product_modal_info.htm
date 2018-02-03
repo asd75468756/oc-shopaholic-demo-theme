@@ -4,7 +4,7 @@
     </div>
 
     <div class="uk-text-middle">
-        {% partial 'product/product_rating' obProduct=obProduct %}
+        {% partial 'product/product_rating' iRating=obProduct.rating %}
     </div>
 
     {% if obProduct.preview_text is not empty %}
