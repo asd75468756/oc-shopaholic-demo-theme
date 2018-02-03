@@ -5,7 +5,7 @@
                 {% for sKey,obImage in obProduct.images %}
                     <li uk-slideshow-item="{{ sKey }}">
                         <a href="#">
-                            <img src="{{ obImage.path }}" alt="">
+                            <img src="{{ obImage.getThumb(60, 80) }}" alt="">
                         </a>
                     </li>
                 {% endfor %}
