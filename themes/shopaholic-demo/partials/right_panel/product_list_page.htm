@@ -1,14 +1,10 @@
 <div class="uk-margin-small-top right_panel">
     {% partial 'common/page_info' sText='pages/product_list.htm' %}
-    <div class="uk-padding-small uk-padding-remove-bottom">
-        <div class="uk-alert-primary" uk-alert>
-            <p>Page with a list of products. List of products sorted and filtered by field "active".</p>
-        </div>
+    <div class="uk-alert-primary" uk-alert>
+        <p>Page with a list of products. List of products sorted and filtered by field "active".</p>
     </div>
-    <div class="uk-padding-small uk-padding-remove-top uk-padding-remove-bottom">
-        <div class="uk-alert-primary" uk-alert>
-            <p>We use the <a href="https://github.com/lovata/oc-shopaholic-plugin/wiki/ProductList" target="_blank"><strong>ProductList</strong></a> component to render a list of products.</p>
-        </div>
+    <div class="uk-alert-primary" uk-alert>
+        <p>We use the <a href="https://github.com/lovata/oc-shopaholic-plugin/wiki/ProductList" target="_blank"><strong>ProductList</strong></a> component to render a list of products.</p>
     </div>
     {% partial 'common/plugin_list_block' %}
     {% partial 'common/plugin_list_block' text='Filter pannel available with plugins:' arPluhinList=['filtershopaholic', 'propertiesshopaholic'] %}

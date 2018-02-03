@@ -24,9 +24,9 @@
                 <div class="uk-margin">
                     <span class="uk-form-label uk-display-block">Price</span>
                     <input name="price[from]" id="price" class="uk-input uk-display-inline filter_between" type="number"
-                           placeholder="{{ obOfferMinPrice.price }}" min="1">
+                           placeholder="{{ obOfferMinPrice.price }}" min="{{ obOfferMinPrice.price_value }}" max="{{ obOfferMaxPrice.price_value }}">
                     <input name="price[to]" class="uk-input uk-display-inline filter_between" type="number"
-                           placeholder="{{ obOfferMaxPrice.price }}" min="1">
+                           placeholder="{{ obOfferMaxPrice.price }}" min="{{ obOfferMinPrice.price_value }}" max="{{ obOfferMaxPrice.price_value }}">
                 </div>
             {% endif %}
 
