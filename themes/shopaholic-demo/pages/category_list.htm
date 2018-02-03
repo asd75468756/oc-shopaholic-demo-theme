@@ -6,9 +6,8 @@ is_hidden = 0
 
 [CategoryList]
 ==
-<div class="uk-grid">
-    <div class="uk-width-1-6"></div>
-    <div class="uk-width-2-3">
+<div class="uk-grid uk-margin-remove-left">
+    <div class="uk-width-5-6">
         {% partial 'breadcrumbs/catalog' %}
         {% partial 'common/page_title' sPageTitle=this.page.title %}
 
@@ -38,4 +37,3 @@ is_hidden = 0
         {% partial 'right_panel/category_list_page' %}
     </div>
 </div>
-

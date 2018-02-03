@@ -1,17 +1,6 @@
 body {
     background-color: #f7f7f7;
-}
-
-.brand_list_item_img {
-     height: 200px;
- }
-
-.product_cart_wrapper {
-    max-height: 330px;
-}
-
-.product_cart_footer {
-    margin-left: 250px;
+    min-width: 1200px;
 }
 
 .filter_between {
@@ -23,6 +12,7 @@ body {
 }
 
 .product_gallery_wrapper {
+    min-width: 300px;
     width: 500px;
     height: 660px;
     margin-left: 5px;
@@ -38,4 +28,72 @@ body {
 
 .product_small_card_title {
     height: 60px;
+}
+
+.slider-item{
+    width: 305px;
+}
+
+.right-panel_width{
+    max-width: 195px;
+}
+
+.uk-alert-close , .uk-alert-primary{
+    font-size: small;
+}
+
+.uk-button{
+    max-width: 130px;
+}
+
+.container{
+    padding: 0 100px !important;
+    margin-bottom: 25px;
+}
+
+.product-slider{
+    padding-left: 50px;
+}
+
+.product_sliders{
+    padding-top: 50px;
+}
+
+.slider-label{
+    padding-left: 10px;
+}
+
+.commentary-area{
+    width: 400px;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.uk-button-primary{
+    max-width: 200px !important;
+}
+
+.user-name-label, .user-surname-label{
+    margin: 0;
+}
+
+.user-name-input, .user-surname-input{
+    width: 200px;
+    height: 25px;
+    margin-bottom: 15px;
+}
+
+.badge_new{
+    top: 5px;
+    left: 5px;
+}
+
+.badge_bestprice{
+    top: 30px;
+    left: 5px;
+}
+
+.tag{
+    margin: 1px 10px 0 0;
+    display: inline-block;
 }

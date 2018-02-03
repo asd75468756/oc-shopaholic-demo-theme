@@ -33,37 +33,39 @@ sorting = "new"
         <hr class="uk-padding-remove uk-margin-remove-top">
         <div>
             <ul uk-tab="animation: uk-animation-fade">
-                {% if has_plugin('Lovata.RelatedProductsShopaholic') %}
+                {#{% if has_plugin('Lovata.RelatedProductsShopaholic') %}#}
                     <li><a href="#">Related</a></li>
-                {% endif %}
+                {#{% endif %}#}
                 <li><a href="#">Characteristics</a></li>
-                {% if has_plugin('Lovata.ReviewsShopaholic') %}
+                {#{% if has_plugin('Lovata.ReviewsShopaholic') %}#}
                     <li><a href="#">Reviews</a></li>
-                {% endif %}
-                {% if has_plugin('Lovata.AccessoriesShopaholic') %}
+                {#{% endif %}#}
+                {#{% if has_plugin('Lovata.AccessoriesShopaholic') %}#}
                     <li><a href="#">Accessories</a></li>
-                {% endif %}
+                {#{% endif %}#}
             </ul>
 
             <div class="uk-switcher uk-margin">
-                {% if has_plugin('Lovata.RelatedProductsShopaholic') %}
+                {#{% if has_plugin('Lovata.RelatedProductsShopaholic') %}#}
                 <div>
-                    {% partial 'product/product_slider' %}
+                    {% set obProductList = ProductList.make().active().random(8) %}
+                    {% partial 'product/product_slider' obProductList=obProductList %}
                 </div>
-                {% endif %}
+                {#{% endif %}#}
                 <div>
                     {% partial 'product/product_properties' obProduct=obProduct %}
                 </div>
-                {% if has_plugin('Lovata.ReviewsShopaholic') %}
+                {#{% if has_plugin('Lovata.ReviewsShopaholic') %}#}
                 <div>
                     {% partial 'ajax/ajax_comment_list' %}
                 </div>
-                {% endif %}
-                {% if has_plugin('Lovata.AccessoriesShopaholic') %}
+                {#{% endif %}#}
+                {#{% if has_plugin('Lovata.AccessoriesShopaholic') %}#}
                 <div>
-                    {% partial 'product/product_slider' %}
+                        {% set obProductList = ProductList.make().active().random(8) %}
+                        {% partial 'product/product_slider' obProductList=obProductList %}
                 </div>
-                {% endif %}
+                {#{% endif %}#}
             </div>
         </div>
         <div class="uk-margin-small-top">
