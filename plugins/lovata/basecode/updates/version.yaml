@@ -16,3 +16,5 @@
     - seeder_payment_method.php
     - seeder_shipping_type.php
     - seeder_reviews.php
+    - seeder_related_products.php
+    - seeder_accessories.php

@@ -56,18 +56,18 @@ mode = "ajax"
 
         <hr class="uk-padding-remove uk-margin-remove-top">
 
-        {% set obRelatedProductList = obProduct.related %}
-        {% set obAccessoryProductList = obProduct.accessory %}
+        {% set obRelatedProductList = obProduct.related.active() %}
+        {% set obAccessoryProductList = obProduct.accessory.active() %}
         <div>
             <ul uk-tab="animation: uk-animation-fade">
                 {% if has_plugin('Lovata.PropertiesShopaholic') %}
                 <li><a href="#">Characteristics</a></li>
                 {% endif %}
+                {% if has_plugin('Lovata.RelatedProductsShopaholic') and obRelatedProductList.isNotEmpty() %}
+                    <li><a href="#">Related</a></li>
+                {% endif %}
                 {% if has_plugin('Lovata.ReviewsShopaholic') %}
                     <li><a href="#">Reviews</a></li>
-                {% endif %}
-                {% if has_plugin('Lovata.RelatedProductsShopaholic') and obRelatedProductList.isNotEmpty() %}
-                <li><a href="#">Related</a></li>
                 {% endif %}
                 {% if has_plugin('Lovata.AccessoriesShopaholic') and obAccessoryProductList.isNotEmpty() %}
                     <li><a href="#">Accessories</a></li>
