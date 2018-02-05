@@ -83,3 +83,12 @@ body {
     margin: 1px 10px 0 0;
     display: inline-block;
 }
+
+.badge-block{
+    top: 5px;
+    left: 10px;
+}
+
+.badge{
+    margin-bottom: 5px;
+}

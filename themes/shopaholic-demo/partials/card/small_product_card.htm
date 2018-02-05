@@ -6,9 +6,13 @@
                      alt="{{ obProduct.preview_image.description }}"
                      title="{{ obProduct.preview_image.title }}">
             {% else %}
-                <img class="product_list_item_img" src="{{ 'no-image.png'|media }}" alt="" title="" uk-cover>
+                <img class="product_list_item_img uk-inline" src="{{ 'no-image.png'|media }}" alt="" title="" uk-cover>
             {% endif %}
         </a>
+        <span class="uk-position-top-left uk-flex uk-flex-column badge-block">
+                <span class="uk-badge badge">New</span>
+                <span class="uk-badge badge">Best price</span>
+            </span>
     </div>
     <div class="uk-card-body uk-padding-small">
         <h3 class="uk-card-title uk-margin-small-bottom product_small_card_title">
