@@ -1,3 +1,5 @@
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+
 {% if obProduct is empty %}
     {% set obProduct = ProductPage.get() %}
 {% endif %}
