@@ -89,6 +89,24 @@ body {
     left: 10px;
 }
 
+.compare-icon{
+    top: 5px;
+    right: 5px;
+}
+
 .badge{
     margin-bottom: 5px;
+}
+
+.autocomplete{
+    position: absolute;
+    width: 800px;
+    top: 160%;
+    left: -100%;
+    background: white;
+}
+
+.search-result{
+    max-height: 400px;
+    overflow: auto;
 }
