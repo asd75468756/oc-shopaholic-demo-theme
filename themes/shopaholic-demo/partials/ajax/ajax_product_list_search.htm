@@ -1,0 +1,12 @@
+    {% set arProductList = ProductList.make().sort(ProductList.getSorting()).active().random(3) %}
+
+{% if arProductList is not empty %}
+        {# Render product list #}
+        {% for obProduct in arProductList %}
+            {% partial 'card/product_card' obProduct=obProduct %}
+        {% endfor %}
+{% else %}
+    <div class="uk-alert-danger uk-margin-small-left" uk-alert>
+        <p><strong>Products not found!</strong></p>
+    </div>
+{% endif %}

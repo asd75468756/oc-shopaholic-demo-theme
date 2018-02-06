@@ -39,10 +39,7 @@
                     </form>
                     <div class="autocomplete uk-animation-slide-top-small">
                         <div class="search-result">
-                            <div style="border: 1px solid red; height: 300px;">
-                                    {% partial 'ajax/ajax_product_list' obCategory=obCategory obProductList=obProductList %}
-
-                            </div>
+                                {% partial 'ajax/ajax_product_list_search' obCategory=obCategory obProductList=obProductList %}
                         </div>    
                     </div>
                 </div> 

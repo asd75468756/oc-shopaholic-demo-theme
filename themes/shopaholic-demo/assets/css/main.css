@@ -100,13 +100,74 @@ body {
 
 .autocomplete{
     position: absolute;
-    width: 800px;
+    width: 1000px;
     top: 160%;
-    left: -100%;
+    left: -150%;
     background: white;
 }
 
 .search-result{
     max-height: 400px;
     overflow: auto;
+    border: 1px solid lightgray;
+}
+
+.result{
+    height: 400px;
+}
+
+.compare-products{
+    max-width: 100%;
+    overflow: auto;
+}
+
+.other-compares, .product-info{
+    height: 350px;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+}
+
+.parameters , .product-chracteristics{
+    border-right: 1px solid darkgray;
+}
+
+.compares-list{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.compares-list__item a{
+    text-decoration: none;
+    color: #666;
+}
+
+.compares-list__item a:active{
+    color: #1e87f0;
+}
+
+.parameters-list, .characteristics-list{
+    padding: 0;
+}
+
+.parameters-list li, .characteristics-list li{
+    padding: 0 10px 10px 30px;
+    display: block;
+    border-bottom: 1px solid darkgray;
+}
+
+.characteristics-list li{
+    border-right: 1px solid darkgray;  
+}
+
+.parameters-list li p, .characteristics-list li p{
+    margin: 0;
+}
+
+.other-compares div{
+    padding: 10px;
+}
+
+.product-info{
+    height: 350px;
+    width: 260px;
 }
