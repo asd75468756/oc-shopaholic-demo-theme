@@ -131,9 +131,15 @@ body {
     border-right: 1px solid darkgray;
 }
 
+.product-name{
+    padding: 10px;
+}
+
 .compares-list{
     overflow-x: hidden;
     overflow-y: auto;
+    list-style: none;
+    padding: 0;
 }
 
 .compares-list__item a{
