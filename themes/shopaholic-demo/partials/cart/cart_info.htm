@@ -5,4 +5,9 @@
     <span>Goods: <strong>{{ obCartItemList.count() }}</strong>,
         Total cost: <strong>{{ obCartItemList.getTotalPrice() }} {{ obCartItemList.getCurrency() }}</strong>
     </span>
+    <span>
+        <a class="user-name uk-margin-small-left" uk-icon="user">Administrator</a>
+        <a uk-icon="sign-in"  uk-tooltip="title: Sign in; pos: bottom"></a>
+        <a uk-icon="sign-out"  uk-tooltip="title: Sing out; pos: bottom-left"></a>
+    </span>
 </div>

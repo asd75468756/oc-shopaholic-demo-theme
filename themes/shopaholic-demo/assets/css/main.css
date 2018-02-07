@@ -135,6 +135,12 @@ body {
     padding: 10px;
 }
 
+.other-compares__sets{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 270px;
+}
+
 .compares-list{
     overflow-x: hidden;
     overflow-y: auto;
@@ -165,7 +171,7 @@ body {
     border-right: 1px solid darkgray;  
 }
 
-.parameters-list li p, .characteristics-list li p{
+.parameters-list li span, .characteristics-list li span{
     margin: 0;
 }
 
@@ -176,4 +182,12 @@ body {
 .product-info{
     height: 350px;
     width: 260px;
+}
+
+.login-form{
+    width: 400px;
+}
+
+.registration-form{
+    width: 600px;
 }
