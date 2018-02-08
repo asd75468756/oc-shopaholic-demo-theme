@@ -1,0 +1,41 @@
+title = "Comments"
+url = "/user_comments"
+layout = "main"
+is_hidden = 0
+
+==
+<div class="comentary-list uk-width-2-3">
+<ul class="uk-comment-list">
+        {% for i in 1..5 %}
+    <li class="uk-margin-small-top">
+        <article class="uk-comment">
+            <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <div class="uk-text-middle">
+                        <div>
+                            {% for i in 1..5 %}
+                                <span {% if iRating >= i - 0.5 %}class="uk-text-warning"{% endif %} uk-icon="icon: star; ratio: {{ ration|default(1.5) }}"></span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-expand">
+                    <h4 class="uk-comment-title uk-margin-remove"><span class="uk-link-reset">Product name</span></h4>
+                    <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                        <li><span>9 hours ago</span></li>
+                    </ul>
+                </div>
+            </header>
+            <div class="uk-comment-body uk-margin-bottom">
+                <p>My rating is 5.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </article>
+        <div class="comment-buttons">
+            <button class="uk-button uk-button-secondary">Update</button>
+            <button class="uk-button uk-button-danger">Remove</button>
+        </div>
+        <hr class="uk-margin-small-top">
+        {% endfor %}
+    </li>
+</ul>
+</div>
