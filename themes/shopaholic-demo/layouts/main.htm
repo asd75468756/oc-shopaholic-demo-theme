@@ -29,5 +29,8 @@ code = "main"
 <script type="text/javascript" src="{{ 'assets/js/uikit-icons.js'|theme }}"></script>
 <script type="text/javascript" src="{{ 'assets/js/main.js?v=0.1.0'|theme }}"></script>
 {% framework %}
+{% if this.environment == 'production' %}
+    {% content 'body_end' %}
+{% endif %}
 </body>
 </html>

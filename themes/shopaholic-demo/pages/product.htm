@@ -34,12 +34,22 @@ last-more_button_limit = 3
 last_button_name = "Last"
 last_button_limit = 3
 ==
-{# If you are testing the "Reviews for Shopaholic" plugin, then you need to connect the MakeReview component to the page #}
-{#
-[MakeReview]
-mode = "ajax"
-#}
+<?php
 
+function onInit()
+{
+    /**
+     * Check if MakeReview component has been registered and autoload it
+     **/
+    // [MakeReview]
+    // mode = "ajax"
+
+    $obManager = \Cms\Classes\ComponentManager::instance();
+    if ($obManager->hasComponent('Lovata\ReviewsShopaholic\Components\MakeReview')){
+        $this->addComponent('Lovata\ReviewsShopaholic\Components\MakeReview', 'MakeReview', [ 'mode' => 'ajax']);
+    }
+}
+==
 {# Get product item #}
 {# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
 {% set obProduct = ProductPage.get() %}

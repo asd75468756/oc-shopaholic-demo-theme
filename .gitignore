@@ -17,6 +17,8 @@ selenium.php
 composer.lock
 _ide_helper.php
 
+/themes/shopaholic-demo/content/*
+
 #gitflow
 gitflow
 
