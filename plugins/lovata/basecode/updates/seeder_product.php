@@ -1,5 +1,6 @@
 <?php namespace Lovata\BaseCode\Updates;
 
+use System\Classes\PluginManager;
 use Lovata\BaseCode\Classes\AbstractModelSeeder;
 
 /**
@@ -28,7 +29,9 @@ class SeederProduct extends AbstractModelSeeder
         $this->fillPreviewText('Product');
         $this->fillDescription('Product');
 
-        $this->obModel->popularity = random_int(0,1000);
+        if (PluginManager::instance()->hasPlugin('Lovata.PopularityShopaholic')) {
+            $this->obModel->popularity = random_int(0, 1000);
+        }
 
         $this->createModelImages('product');
     }
