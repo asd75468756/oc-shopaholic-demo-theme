@@ -385,11 +385,6 @@ class Lists extends WidgetBase
          */
         foreach ($this->getVisibleColumns() as $column) {
 
-            // If useRelationCount is enabled, eager load the count of the relation into $relation_count
-            if ($column->relation && @$column->config['useRelationCount']) {
-                $query->withCount($column->relation);
-            }
-
             if (!$this->isColumnRelated($column) || (!isset($column->sqlSelect) && !isset($column->valueFrom))) {
                 continue;
             }
@@ -498,11 +493,6 @@ class Lists extends WidgetBase
                     : $column->valueFrom;
             }
 
-            // Set the sorting column to $relation_count if useRelationCount enabled
-            if (isset($column->relation) && @$column->config['useRelationCount']) {
-                $sortColumn = $column->relation . '_count';
-            }
-
             $query->orderBy($sortColumn, $this->sortDirection);
         }
 
@@ -516,7 +506,7 @@ class Lists extends WidgetBase
         /*
          * Add custom selects
          */
-        $query->addSelect($selects);
+        $query->select($selects);
 
         /*
          * Extensibility
@@ -850,22 +840,20 @@ class Lists extends WidgetBase
         else {
             if ($record->hasRelation($columnName) && array_key_exists($columnName, $record->attributes)) {
                 $value = $record->attributes[$columnName];
-            // Load the value from the relationship counter if useRelationCount is specified
-            } elseif ($column->relation && @$column->config['useRelationCount']) {
-                $value = $record->{"{$column->relation}_count"};
-            } else {
+            }
+            else {
                 $value = $record->{$columnName};
             }
         }
-
+        
         /**
          * @event backend.list.overrideColumnValueRaw
-         * Overrides the raw column value in a list widget.
+         * Overrides the raw column value in a list widget. 
          *
          * If a value is returned from this event, it will be used as the raw value for the provided column.
          * `$value` is passed by reference so modifying the variable in place is also supported. Example usage:
          *
-         *     Event::listen('backend.list.overrideColumnValueRaw', function($record, $column, &$value) {
+         *     Event::listen('backend.list.overrideColumnValueRaw', function($record, $column, &$value) { 
          *         $value .= '-modified';
          *     });
          *
@@ -907,12 +895,12 @@ class Lists extends WidgetBase
 
         /**
          * @event backend.list.overrideColumnValue
-         * Overrides the column value in a list widget.
+         * Overrides the column value in a list widget. 
          *
          * If a value is returned from this event, it will be used as the value for the provided column.
          * `$value` is passed by reference so modifying the variable in place is also supported. Example usage:
          *
-         *     Event::listen('backend.list.overrideColumnValue', function($record, $column, &$value) {
+         *     Event::listen('backend.list.overrideColumnValue', function($record, $column, &$value) { 
          *         $value .= '-modified';
          *     });
          *
@@ -1176,13 +1164,7 @@ class Lists extends WidgetBase
 
         return Backend::dateTime($dateTime, $options);
     }
-    /**
-     * Process as background color, to be seen at list
-     */
-    protected function evalColorPickerTypeValue($record, $column, $value)
-    {
-        return  '<span style="width:30px; height:30px; display:inline-block; background:'.e($value).'; padding:10px"><span>';
-    }
+
     /**
      * Validates a column type as a date
      */

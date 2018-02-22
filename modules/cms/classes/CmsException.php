@@ -169,7 +169,7 @@ class CmsException extends ApplicationException
             $trace = $exception->getTrace();
             if (isset($trace[1]['class'])) {
                 $class = $trace[1]['class'];
-                if (!is_subclass_of($class, CodeBase::class)) {
+                if (!is_subclass_of($class, 'Cms\Classes\CodeBase')) {
                     return false;
                 }
             }

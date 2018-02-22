@@ -19,6 +19,6 @@ class Partial extends CmsCompoundObject
      */
     public function getCodeClassParent()
     {
-        return PartialCode::class;
+        return '\Cms\Classes\PartialCode';
     }
 }

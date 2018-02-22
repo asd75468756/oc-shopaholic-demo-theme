@@ -127,7 +127,17 @@ class FormController extends ControllerBehavior
         /*
          * Each page can supply a unique form definition, if desired
          */
-        $formFields = $this->getConfig("{$context}[form]", $this->config->form);
+        $formFields = $this->config->form;
+
+        if ($context == self::CONTEXT_CREATE) {
+            $formFields = $this->getConfig('create[form]', $formFields);
+        }
+        elseif ($context == self::CONTEXT_UPDATE) {
+            $formFields = $this->getConfig('update[form]', $formFields);
+        }
+        elseif ($context == self::CONTEXT_PREVIEW) {
+            $formFields = $this->getConfig('preview[form]', $formFields);
+        }
 
         $config = $this->makeConfig($formFields);
         $config->model = $model;
@@ -199,7 +209,7 @@ class FormController extends ControllerBehavior
         try {
             $this->context = strlen($context) ? $context : $this->getConfig('create[context]', self::CONTEXT_CREATE);
             $this->controller->pageTitle = $this->controller->pageTitle ?: $this->getLang(
-                "{$this->context}[title]",
+                'create[title]',
                 'backend::lang.form.create_title'
             );
 
@@ -245,7 +255,7 @@ class FormController extends ControllerBehavior
         $this->controller->formAfterSave($model);
         $this->controller->formAfterCreate($model);
 
-        Flash::success($this->getLang("{$this->context}[flashSave]", 'backend::lang.form.create_success'));
+        Flash::success($this->getLang('create[flashSave]', 'backend::lang.form.create_success'));
 
         if ($redirect = $this->makeRedirect('create', $model)) {
             return $redirect;
@@ -270,7 +280,7 @@ class FormController extends ControllerBehavior
         try {
             $this->context = strlen($context) ? $context : $this->getConfig('update[context]', self::CONTEXT_UPDATE);
             $this->controller->pageTitle = $this->controller->pageTitle ?: $this->getLang(
-                "{$this->context}[title]",
+                'update[title]',
                 'backend::lang.form.update_title'
             );
 
@@ -312,7 +322,7 @@ class FormController extends ControllerBehavior
         $this->controller->formAfterSave($model);
         $this->controller->formAfterUpdate($model);
 
-        Flash::success($this->getLang("{$this->context}[flashSave]", 'backend::lang.form.update_success'));
+        Flash::success($this->getLang('update[flashSave]', 'backend::lang.form.update_success'));
 
         if ($redirect = $this->makeRedirect('update', $model)) {
             return $redirect;
@@ -339,7 +349,7 @@ class FormController extends ControllerBehavior
 
         $this->controller->formAfterDelete($model);
 
-        Flash::success($this->getLang("{$this->context}[flashDelete]", 'backend::lang.form.delete_success'));
+        Flash::success($this->getLang('update[flashDelete]', 'backend::lang.form.delete_success'));
 
         if ($redirect = $this->makeRedirect('delete', $model)) {
             return $redirect;
@@ -364,7 +374,7 @@ class FormController extends ControllerBehavior
         try {
             $this->context = strlen($context) ? $context : $this->getConfig('preview[context]', self::CONTEXT_PREVIEW);
             $this->controller->pageTitle = $this->controller->pageTitle ?: $this->getLang(
-                "{$this->context}[title]",
+                'preview[title]',
                 'backend::lang.form.preview_title'
             );
 
@@ -454,7 +464,7 @@ class FormController extends ControllerBehavior
         if (post('close') && !ends_with($context, '-close')) {
             $context .= '-close';
         }
-
+        
         if (post('refresh', false)) {
             return Redirect::refresh();
         }
@@ -479,17 +489,16 @@ class FormController extends ControllerBehavior
      */
     protected function getRedirectUrl($context = null)
     {
-        $redirectContext = explode('-', $context, 2)[0];
-        $redirectSource = ends_with($context, '-close') ? 'redirectClose' : 'redirect';
+        $redirects = [
+            'default'      => $this->getConfig('defaultRedirect', ''),
+            'create'       => $this->getConfig('create[redirect]', ''),
+            'create-close' => $this->getConfig('create[redirectClose]', ''),
+            'update'       => $this->getConfig('update[redirect]', ''),
+            'update-close' => $this->getConfig('update[redirectClose]', ''),
+            'preview'      => $this->getConfig('preview[redirect]', ''),
+        ];
 
-        // Get the redirect for the provided context
-        $redirects = [$context => $this->getConfig("{$redirectContext}[{$redirectSource}]", '')];
-
-        // Assign the default redirect afterwards to prevent the
-        // source for the default redirect being default[redirect]
-        $redirects['default'] = $this->getConfig('defaultRedirect', '');
-
-        if (empty($redirects[$context])) {
+        if (!isset($redirects[$context])) {
             return $redirects['default'];
         }
 

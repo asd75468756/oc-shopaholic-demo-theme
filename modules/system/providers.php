@@ -8,6 +8,7 @@ return [
     Illuminate\Broadcasting\BroadcastServiceProvider::class,
     Illuminate\Bus\BusServiceProvider::class,
     Illuminate\Cache\CacheServiceProvider::class,
+    Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
     Illuminate\Cookie\CookieServiceProvider::class,
     Illuminate\Encryption\EncryptionServiceProvider::class,
     Illuminate\Foundation\Providers\FoundationServiceProvider::class,
@@ -24,7 +25,6 @@ return [
     /*
      * October Rain providers
      */
-    October\Rain\Foundation\Providers\ConsoleSupportServiceProvider::class,
     October\Rain\Database\DatabaseServiceProvider::class,
     October\Rain\Halcyon\HalcyonServiceProvider::class,
     October\Rain\Filesystem\FilesystemServiceProvider::class,
