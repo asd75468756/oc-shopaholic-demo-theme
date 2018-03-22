@@ -57,6 +57,19 @@ function onInit()
 {# Get breadcrumbs #}
 {% set arBreadcrumbs = CatalogBreadcrumbs.getByProductID(obProduct.id) %}
 
+{{ obProduct.inCompare() }}
+<form data-request="ProductPage::onAddToCompare">
+    <input name="product_id" value="{{ obProduct.id }}">
+    <button type="submit">Add</button>
+</form>
+<form data-request="ProductPage::onRemoveFromCompare">
+    <input name="product_id" value="{{ obProduct.id }}">
+    <button type="submit">Remove</button>
+</form>
+<form data-request="ProductPage::onClearCompareList">
+    <button type="submit">Clear</button>
+</form>
+
 <div class="uk-grid uk-margin-small-left">
     <div class="uk-width-5-6">
         <div class="uk-margin-small-bottom">
