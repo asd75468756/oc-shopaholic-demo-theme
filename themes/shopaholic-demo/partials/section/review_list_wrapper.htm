@@ -1,3 +1,5 @@
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+
 <div class="uk-flex uk-flex-row">
     <div class="review_list_wrapper uk-width-expand">
         {% partial 'ajax/ajax_review_list' obProduct=obProduct %}
@@ -46,7 +48,7 @@
             <form class="create_review_form">
                 <fieldset class="uk-fieldset">
                     <div class="uk-margin">
-                        <input name="name" class="uk-input" type="text" placeholder="Andrey Kharanenka" req>
+                        <input name="name" class="uk-input" type="text" placeholder="Andrey Kharanenka" required>
                     </div>
                     <div class="uk-margin">
                         <textarea name="comment" class="uk-textarea" rows="5" placeholder="My rating is" required></textarea>

@@ -34,17 +34,42 @@ last-more_button_limit = 3
 last_button_name = "Last"
 last_button_limit = 3
 ==
-{# If you are testing the "Reviews for Shopaholic" plugin, then you need to connect the MakeReview component to the page #}
-{#
-[MakeReview]
-mode = "ajax"
-#}
+<?php
+
+function onInit()
+{
+    /**
+     * Check if MakeReview component has been registered and autoload it
+     **/
+    // [MakeReview]
+    // mode = "ajax"
+
+    $obManager = \Cms\Classes\ComponentManager::instance();
+    if ($obManager->hasComponent('Lovata\ReviewsShopaholic\Components\MakeReview')){
+        $this->addComponent('Lovata\ReviewsShopaholic\Components\MakeReview', 'MakeReview', [ 'mode' => 'ajax']);
+    }
+}
+==
 
 {# Get product item #}
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
 {% set obProduct = ProductPage.get() %}
 
 {# Get breadcrumbs #}
 {% set arBreadcrumbs = CatalogBreadcrumbs.getByProductID(obProduct.id) %}
+
+{{ obProduct.inCompare() }}
+<form data-request="ProductPage::onAddToCompare">
+    <input name="product_id" value="{{ obProduct.id }}">
+    <button type="submit">Add</button>
+</form>
+<form data-request="ProductPage::onRemoveFromCompare">
+    <input name="product_id" value="{{ obProduct.id }}">
+    <button type="submit">Remove</button>
+</form>
+<form data-request="ProductPage::onClearCompareList">
+    <button type="submit">Clear</button>
+</form>
 
 <div class="uk-grid uk-margin-small-left">
     <div class="uk-width-5-6">
