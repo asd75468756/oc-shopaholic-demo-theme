@@ -1,0 +1,53 @@
+title = "Compare page"
+url = "/compare"
+layout = "main"
+is_hidden = 0
+
+==
+
+<div class="compare-block uk-flex uk-flex-row uk-margin-left">
+    <div class="compare-parameters uk-width-1-5">
+        <div class="other-compares">
+            <h3>Other compares</h3>
+            <div class="other-compares__sets">
+                <ul class="compares-list">
+                        {% for i in 1.. 8 %}
+                    <li class="compares-list__item"><a href="">Jeans</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="parameters">
+
+            <ul class="parameters-list">
+                {% for i in 1.. 10 %}
+                <li class=" uk-text-truncate"><span>jsfh</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="compare-products uk-width-4-5">
+        <div class="products__list uk-flex">
+            {% for i in 1.. 6 %}
+            <div class="product-block">
+                <div class="product-info uk-inline">
+                    <img src="..\..\storage\app\uploads\public\5a7\8c0\b86\5a78c0b86bf1c657849153.jpg" class="product-image">
+                    <div class="product-name uk-overlay uk-overlay-primary uk-position-bottom">
+                        <h3><a href="">Product name or not this product</a></h3>
+                        <strong class="uk-text-danger ">11.29</strong>
+                        <s class="uk-margin-small-left">3.15</s>
+                    </div>
+                    <span uk-icon="close" class="uk-position-small uk-position-top-right uk-icon-link" uk-tooltip="title: Remove from compare; pos: top"></span>
+                </div>
+                <div class="product-characteristics">
+                    <ul class="characteristics-list">
+                        {% for i in 1.. 10 %}
+                        <li class=" uk-text-truncate"><span>jsfh</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

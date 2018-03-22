@@ -30,6 +30,21 @@
 
             </ul>
         </div>
+        <div class="uk-navbar-center">
+            <div >
+                <a class="uk-navbar-toggle" uk-search-icon href="#"  uk-tooltip="title: Search; pos: top"></a>
+                <div class="uk-drop" uk-drop="mode: click; pos: right-center; offset: 0">
+                        <form class="uk-search uk-search-navbar uk-width-1-1">
+                        <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+                    </form>
+                    <div class="autocomplete uk-animation-slide-top-small">
+                        <div class="search-result">
+                                {% partial 'ajax/ajax_product_list_search' obCategory=obCategory obProductList=obProductList %}
+                        </div>    
+                    </div>
+                </div> 
+            </div>
+       </div>
         <div class="uk-navbar-right">
             <div class="_cart_info_wrapper">
                 {% partial 'cart/cart_info' %}

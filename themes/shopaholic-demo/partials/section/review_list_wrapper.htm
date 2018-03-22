@@ -4,9 +4,36 @@
     <div class="review_list_wrapper uk-width-expand">
         {% partial 'ajax/ajax_review_list' obProduct=obProduct %}
     </div>
-    <div class="uk-width-1-3 uk-grid uk-padding">
-        <div>
+    <div class="uk-width-2-5 uk-flex uk-padding uk-flex-column">
+        <div class="commentary-create">
             <button class="uk-button uk-button-secondary uk-text-center" uk-toggle="target: #review-modal" type="button">Create review</button>
+        </div>
+        <div class="reviews-card uk-width-1-1">
+            <h3>Reviews (count)</h3>
+            <hr>
+            <div class="average-mark uk-flex uk-flex-row">
+                <h2 class="average-mark__mark uk-margin-remove-bottom uk-margin-right">0.0</h2>
+                {% for i in 1..5 %}
+                <span {% if iRating >= i - 0.5 %}class="uk-text-warning"{% endif %} uk-icon="icon: star; ratio: {{ ration|default(1.5) }}"></span>
+                {% endfor %}
+            </div>
+            <div class="uk-flex uk-flex-column uk-margin-top">
+                {% for i in 1..5 %}
+                <div class="uk-flex uk-flex-row rating uk-margin-small-bottom">
+                    <span class="rating-stars">
+                        {% for i in 1..5 %}
+                        <span {% if iRating >= i - 0.5 %}class="uk-text-warning"{% endif %} uk-icon="icon: star; ratio: {{ ration|default(0.8) }}"></span>
+                        {% endfor %}
+                    </span>
+                    <span class="rating-marks-counts">100</span>
+                    <progress class="uk-progress rating-progress uk-margin-remove"  value="10" max="100"></progress>
+                </div>
+                <div class="uk-flex uk-flex-row"></div>
+                <div class="uk-flex uk-flex-row"></div>
+                <div class="uk-flex uk-flex-row"></div>
+                <div class="uk-flex uk-flex-row"></div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

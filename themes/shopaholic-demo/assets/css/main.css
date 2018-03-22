@@ -83,3 +83,197 @@ body {
     margin: 1px 10px 0 0;
     display: inline-block;
 }
+
+.badge-block{
+    top: 5px;
+    left: 10px;
+}
+
+.compare-icon{
+    top: 5px;
+    right: 5px;
+}
+
+.badge{
+    margin-bottom: 5px;
+}
+
+.autocomplete{
+    position: absolute;
+    width: 1000px;
+    top: 160%;
+    left: -150%;
+    background: white;
+}
+
+.search-result{
+    max-height: 400px;
+    overflow: auto;
+    border: 1px solid lightgray;
+}
+
+.result{
+    height: 400px;
+}
+
+.compare-products{
+    max-width: 100%;
+    overflow: auto;
+}
+
+.other-compares, .product-info{
+    height: 350px;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+}
+
+.parameters , .product-chracteristics{
+    border-right: 1px solid darkgray;
+}
+
+.product-name{
+    padding: 10px;
+}
+
+.other-compares__sets{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 270px;
+}
+
+.compares-list{
+    overflow-x: hidden;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.compares-list__item a{
+    text-decoration: none;
+    color: #666;
+}
+
+.compares-list__item a:active{
+    color: #1e87f0;
+}
+
+.parameters-list, .characteristics-list{
+    padding: 0;
+}
+
+.parameters-list li, .characteristics-list li{
+    padding: 0 10px 10px 30px;
+    display: block;
+    border-bottom: 1px solid darkgray;
+}
+
+.characteristics-list li{
+    border-right: 1px solid darkgray;  
+}
+
+.parameters-list li span, .characteristics-list li span{
+    margin: 0;
+}
+
+.other-compares div{
+    padding: 10px;
+}
+
+.product-info{
+    height: 350px;
+    width: 260px;
+}
+
+.login-form{
+    width: 400px;
+}
+
+.registration-form{
+    width: 600px;
+}
+
+.news_list{
+    display: flex;
+    flex-flow: row wrap;
+    padding-left: 20px;
+}
+
+.news{
+    display: block;
+    padding: 10px;
+}
+
+.time_post{
+  display: flex;
+  flex-direction: row;
+  align-items: center;  
+}
+
+.time_post svg{
+    height: 15px;
+}
+
+.news_photo img{
+    width: 100%;
+}
+
+.news_info{
+    width: 850px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.news_info__text{
+    width: 800px;
+}
+
+.commentary-create{
+    height: 50px;
+}
+
+.comentary-list{
+    margin-left: 20px;
+}
+
+.average-mark{
+    align-items: center;
+}
+
+.rating{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rating-progress{
+    width: 200px;
+}
+
+.user-name svg{
+    height: 15px;
+}
+
+._cart_item_list{
+    width: 60%;
+}
+
+._cart_item_list .order_buttons{
+    width: 100%;
+}
+
+._cart_item_list ._offer_add_cart_button, 
+._cart_item_list ._offer_like_cart_icon, 
+._cart_item_list .product_rating,
+._cart_item_list .product_size,
+._cart_item_list .product_description,
+._cart_item_list .product_characteristics{
+    display: none;
+}
+
+._cart_item_list .product_count{
+    position: absolute;
+    left: 22%;
+}
+
+._cart_item_list img{
+    width: 140px;
+}
