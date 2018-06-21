@@ -14,7 +14,7 @@ class SeederOrderProperty extends AbstractModelSeeder
 
     protected $arFieldList = ['active', 'name', 'code', 'type'];
 
-    /** @var \Lovata\OrdersShopaholic\Models\Property */
+    /** @var \Lovata\OrdersShopaholic\Models\OrderProperty */
     protected $obModel;
 
     /**
@@ -36,7 +36,7 @@ class SeederOrderProperty extends AbstractModelSeeder
      */
     protected function getModelName()
     {
-        return \Lovata\OrdersShopaholic\Models\Property::class;
+        return \Lovata\OrdersShopaholic\Models\OrderProperty::class;
     }
 
     /**
