@@ -80,4 +80,32 @@ class SeederProduct extends AbstractModelSeeder
             }
         }
     }
+
+    /**
+     * Create images
+     * @param string $sFolderName
+     */
+    protected function createModelImages($sFolderName)
+    {
+        $iIncreaseProductCount = (int) env('INCREASE_PRODUCT_COUNT', 1);
+        if ($iIncreaseProductCount > 10) {
+            return;
+        }
+
+        parent::createModelImages($sFolderName);
+    }
+
+    /**
+     * Create new preview image
+     * @param string $sFolderName
+     */
+    protected function createPreviewImage($sFolderName)
+    {
+        $iIncreaseProductCount = (int) env('INCREASE_PRODUCT_COUNT', 1);
+        if ($iIncreaseProductCount > 10) {
+            return;
+        }
+
+        parent::createPreviewImage($sFolderName);
+    }
 }

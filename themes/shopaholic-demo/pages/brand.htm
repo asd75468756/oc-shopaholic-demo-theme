@@ -22,7 +22,7 @@ slug_required = 1
                      alt="{{ obBrand.preview_image.description }}"
                      title="{{ obBrand.preview_image.title }}">
             {% else %}
-                <img class="uk-float-left uk-margin-medium-right uk-margin-small-bottom brand_list_item_img" src="{{ 'no-image.png'|media }}" alt="" title="">
+                <img class="uk-float-left uk-margin-medium-right uk-margin-small-bottom brand_list_item_img" src="{{ 'no-image.png'|media }}" alt="" title="" width="200" height="200">
             {% endif %}
             <p>{{ obBrand.preview_text }}</p>
             {{ obBrand.description|raw }}
