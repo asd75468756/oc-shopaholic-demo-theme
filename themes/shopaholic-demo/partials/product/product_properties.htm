@@ -5,18 +5,18 @@
 {% set obGroupList = obProduct.property.getGroupList().sort() %}
 
 {# Get property collection, apply sorting and filters by active #}
-{% set obPropertyList = obProduct.property.active().sort().save('product-property-list') %}
+{% set obPropertyList = obProduct.property.active().sort() %}
 
 {% if obGroupList.isNotEmpty() %}
     <dl class="uk-description-list uk-width-1-2">
         {% for obGroup in obGroupList %}
             {# Get property collection, apply filters by group #}
-            {% set obPropertyList = obPropertyList.saved('product-property-list').group(obGroup.id) %}
-            {% if obPropertyList.isNotEmpty() %}
+            {% set obGroupPropertyList = obPropertyList.group(obGroup.id) %}
+            {% if obGroupPropertyList.isNotEmpty() %}
                 <dt>{{ obGroup.name }}</dt>
                 <dd>
                     <ul class="uk-list ">
-                        {% for obProperty in obPropertyList if obProperty.hasValue() %}
+                        {% for obProperty in obGroupPropertyList if obProperty.hasValue() %}
                             <li>
                                 <div class="uk-grid-small" uk-grid>
                                     <div class="uk-width-expand" uk-leader>{{ obProperty.name }}

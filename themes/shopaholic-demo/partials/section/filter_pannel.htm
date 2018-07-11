@@ -58,7 +58,7 @@
                     {% set sFilterType = obPropertyList.getFilterType(obProperty.id) %}
 
                     {# Get proeprty value list #}
-                    {% set obPropertyValueList = obProperty.property_value.sort().unique().notEmpty() %}
+                    {% set obPropertyValueList = obProperty.property_value.sort() %}
 
                     <div class="uk-margin">
                         <span class="uk-form-label uk-display-block">{{ obPropertyList.getFilterName(obProperty.id) }}</span>
@@ -108,7 +108,7 @@
                     {% set sFilterType = obPropertyList.getFilterType(obProperty.id) %}
 
                     {# Get proeprty value list #}
-                    {% set obPropertyValueList = obProperty.property_value.sort().unique().notEmpty() %}
+                    {% set obPropertyValueList = obProperty.property_value.sort() %}
 
                     <div class="uk-margin">
                         <span class="uk-form-label uk-display-block">{{ obPropertyList.getFilterName(obProperty.id) }}</span>

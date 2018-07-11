@@ -1,16 +1,18 @@
 1.0.0:
     - 'Initialize plugin.'
-    - seeder_plugin_settings.php
-    - seeder_system_images.php
-    - seeder_category.php
-    - seeder_brand.php
-    - seeder_product.php
-    - seeder_offer.php
-    - seeder_measure.php
-    - seeder_property_group.php
-    - seeder_property.php
-    - seeder_product_property_link.php
-    - seeder_offer_property_link.php
+#    - seeder_plugin_settings.php
+#    - seeder_system_images.php
+#    - seeder_category.php
+#    - seeder_brand.php
+#    - seeder_product.php
+#    - seeder_offer.php
+#    - seeder_property_set.php
+#    - seeder_property_set_link.php
+#    - seeder_measure.php
+#    - seeder_property_group.php
+#    - seeder_property.php
+#    - seeder_product_property_link.php
+#    - seeder_offer_property_link.php
     - seeder_property_value.php
     - seeder_order_property.php
     - seeder_payment_method.php

@@ -1,6 +1,9 @@
 <?php namespace Lovata\BaseCode\Updates;
 
 use Lovata\BaseCode\Classes\AbstractModelSeeder;
+use Lovata\PropertiesShopaholic\Models\PropertyValue;
+use Lovata\Shopaholic\Models\Offer;
+use Lovata\Shopaholic\Models\Product;
 
 /**
  * Class SeederPropertyValue
@@ -8,10 +11,8 @@ use Lovata\BaseCode\Classes\AbstractModelSeeder;
  */
 class SeederPropertyValue extends AbstractModelSeeder
 {
-    protected $sTableName = 'lovata_properties_shopaholic_value';
+    protected $sTableName = 'lovata_properties_shopaholic_values';
     protected $sFilePath = 'lovata/basecode/csv/property_value_list.csv';
-
-    protected $arFieldList = ['active', 'property_id', 'model', 'value'];
 
     protected function getModelName()
     {
@@ -23,58 +24,73 @@ class SeederPropertyValue extends AbstractModelSeeder
      */
     protected function process()
     {
-        if(empty($this->arRowData) || empty($this->arFieldList)) {
+        if (empty($this->arRowData)) {
             return;
         }
 
-        //Clear model data array
-        $this->arModelData = [];
+        $arLinkData = [];
+        $arLinkData['property_id'] = array_shift($this->arRowData);
 
-        foreach ($this->arFieldList as $sFieldName) {
+        $sModel = array_shift($this->arRowData);
+        $arLinkData['element_type'] = $sModel == 'offer' ? Offer::class : Product::class;
 
-            switch ($sFieldName) {
-                case 'active':
-                    $this->arModelData['active'] = true;
-                    break;
-                case 'model':
-                    $this->arModelData['model'] = array_shift($this->arRowData) == 'product' ? \Lovata\Shopaholic\Models\Product::class : \Lovata\Shopaholic\Models\Offer::class;
-                    break;
-                default:
-                    $this->arModelData[$sFieldName] = array_shift($this->arRowData);
-            }
-        }
-
-        //Get product ID list
-        $sProductIDList = array_shift($this->arRowData);
-        if(empty($sProductIDList)) {
+        $sValue = array_shift($this->arRowData);
+        if (empty($sValue)) {
             return;
         }
 
-        $arProductIDList = explode('|', $sProductIDList);
-        foreach ($arProductIDList as $iProductID) {
+        $arElementIDList = explode('|', array_shift($this->arRowData));
 
-            //Get product object
-            if($this->arModelData['model'] == \Lovata\Shopaholic\Models\Product::class) {
-                $obProduct = $this->arModelData['model']::find($iProductID);
-            } else {
-                /** @var  \Lovata\Shopaholic\Models\Offer $obOffer */
-                $obOffer = $this->arModelData['model']::find($iProductID);
-                if(empty($obOffer)) {
-                    continue;
+        try {
+            $obValue = \Lovata\PropertiesShopaholic\Models\PropertyValue::create([
+                'value' => $sValue,
+                'slug'  => PropertyValue::getSlugValue($sValue),
+            ]);
+        } catch (\October\Rain\Database\ModelException $obException) {
+            echo $obException->getMessage();
+            return;
+        }
+
+        $arLinkData['value_id'] = $obValue->id;
+
+        $iIncreaseProductCount = (int) env('INCREASE_PRODUCT_COUNT', 1);
+        if ($iIncreaseProductCount < 1) {
+            $iIncreaseProductCount = 1;
+        }
+
+        $iLimitCount = $sModel == 'offer' ? Offer::count() / $iIncreaseProductCount : Product::count() / $iIncreaseProductCount;
+
+        for ($i = 0; $i < $iIncreaseProductCount; $i++) {
+            foreach ($arElementIDList as $iElementID) {
+                if ($arLinkData['element_type'] == Product::class) {
+                    $arLinkData['product_id'] = $iElementID + $i * $iLimitCount;
+                } else {
+                    $obOffer = Offer::find($iElementID + $i * $iLimitCount);
+                    if (empty($obOffer)) {
+                        continue;
+                    }
+
+                    $arLinkData['product_id'] = $obOffer->product_id;
+
                 }
 
-                $obProduct = $obOffer->product;
+                $arLinkData['element_id'] = $iElementID + $i * $iLimitCount;
+
+                try {
+                    $obValue = \Lovata\PropertiesShopaholic\Models\PropertyValueLink::create($arLinkData);
+                } catch (\October\Rain\Database\ModelException $obException) {
+                    echo $obException->getMessage();
+                }
             }
-
-            if(empty($obProduct)) {
-                continue;
-            }
-
-            $this->arModelData['product_id'] = $iProductID;
-            $this->arModelData['category_id'] = $obProduct->category_id;
-
-            $sModelName = $this->getModelName();
-            $this->obModel = $sModelName::create($this->arModelData);
         }
+    }
+
+    /**
+     * Clear table
+     */
+    protected function clear()
+    {
+        parent::clear();
+        \DB::table('lovata_properties_shopaholic_value_link')->truncate();
     }
 }

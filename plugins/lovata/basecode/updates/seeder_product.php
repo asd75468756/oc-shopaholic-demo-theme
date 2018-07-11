@@ -35,4 +35,49 @@ class SeederProduct extends AbstractModelSeeder
 
         $this->createModelImages('product');
     }
+
+    /**
+     * Seed table
+     */
+    protected function seed()
+    {
+        if(empty($this->obFile) || !is_resource($this->obFile)) {
+            return;
+        }
+
+        //Skip first line
+        fgetcsv($this->obFile);
+
+        $iIncreaseProductCount = (int) env('INCREASE_PRODUCT_COUNT', 1);
+        if ($iIncreaseProductCount < 1) {
+            $iIncreaseProductCount = 1;
+        }
+
+        $arRowList = [];
+
+        //Process rows of csv file
+        while (($arRow = fgetcsv($this->obFile)) !== false) {
+
+            //Always skip first column
+            array_shift($arRow);
+            if(empty($arRow)) {
+                continue;
+            }
+
+
+
+            $arRowList[] = $arRow;
+        }
+
+        for ($i = 0; $i < $iIncreaseProductCount; $i++) {
+            foreach ($arRowList as $arRow) {
+                $this->arRowData = $arRow;
+                $this->arRowData[0] = $arRow[0].'-'.$i;
+                $this->arRowData[1] = $arRow[1].'-'.$i;
+                $this->arRowData[2] = $arRow[2].'-'.$i;
+
+                $this->process();
+            }
+        }
+    }
 }

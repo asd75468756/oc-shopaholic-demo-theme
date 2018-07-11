@@ -10,10 +10,10 @@ use Lovata\BaseCode\Classes\AbstractModelSeeder;
  */
 class SeederOfferPropertyLink extends AbstractModelSeeder
 {
-    protected $sTableName = 'lovata_properties_shopaholic_offer_link';
+    protected $sTableName = 'lovata_properties_shopaholic_set_offer_link';
     protected $sFilePath = 'lovata/basecode/csv/offer_property_link_list.csv';
 
-    protected $arFieldList = ['property_id', 'category_id'];
+    protected $arFieldList = ['property_id', 'set_id'];
 
     /** @var \Lovata\PropertiesShopaholic\Models\Property */
     protected $obModel;

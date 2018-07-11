@@ -2,6 +2,7 @@
 
 use Seeder;
 use Lovata\Shopaholic\Models\Settings;
+use Lovata\Toolbox\Models\Settings as ToolboxSettings;
 use System\Classes\PluginManager;
 
 /**
@@ -17,9 +18,9 @@ class SeederPluginSettings extends Seeder
         }
 
         Settings::set('check_offer_active', true);
-        Settings::set('decimals', 2);
-        Settings::set('dec_point', 'dot');
-        Settings::set('thousands_sep', 'space');
+        ToolboxSettings::set('decimals', 2);
+        ToolboxSettings::set('dec_point', 'dot');
+        ToolboxSettings::set('thousands_sep', 'space');
         Settings::set('currency', '$');
 
         //Order and cart settings

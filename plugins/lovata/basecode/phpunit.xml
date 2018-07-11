@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="../../../tests/bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+>
+    <testsuites>
+        <testsuite name="Plugin 'Basecode' Unit Test Suite">
+            <directory>./../accessoriesshopaholic/tests/unit</directory>
+            <directory>./../buddies/tests/unit</directory>
+            <directory>./../compareshopaholic/tests/unit</directory>
+            <directory>./../filtershopaholic/tests/unit</directory>
+            <directory>./../ordersshopaholic/tests/unit</directory>
+            <directory>./../popularityshopaholic/tests/unit</directory>
+            <directory>./../propertiesshopaholic/tests/unit</directory>
+            <directory>./../relatedproductsshopaholic/tests/unit</directory>
+            <directory>./../reviewsshopaholic/tests/unit</directory>
+            <directory>./../searchshopaholic/tests/unit</directory>
+            <directory>./../seotoolbox/tests/unit</directory>
+            <directory>./../tagsshopaholic/tests/unit</directory>
+            <directory>./../shopaholic/tests/unit</directory>
+            <directory>./../toolbox/tests/unit</directory>
+            <directory>./../viewedproductsshopaholic/tests/unit</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+    </php>
+</phpunit>
