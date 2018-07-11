@@ -1,5 +1,7 @@
 <?php namespace Lovata\BaseCode\Classes\Console;
 
+use Lovata\BaseCode\Classes\Queue\GenerateCacheQueue;
+use Queue;
 use Illuminate\Console\Command;
 
 /**
@@ -51,7 +53,9 @@ class GenerateCacheCommand extends Command
         }
 
         foreach ($obElementList as $obElement) {
-            $sItemClass::make($obElement->id, $obElement);
+
+            $iElementID = $obElement->id;
+            Queue::pushOn( env('BRANCH_NAME').'cache', GenerateCacheQueue::class, ['item' => $sItemClass, 'id' => $iElementID]);
         }
     }
 }
