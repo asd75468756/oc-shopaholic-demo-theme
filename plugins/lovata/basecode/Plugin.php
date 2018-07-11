@@ -24,6 +24,14 @@ class Plugin extends PluginBase
     }
 
     /**
+     * Register plugin method
+     */
+    public function register()
+    {
+        $this->registerConsoleCommand('shopaholic:generate.cache', 'Lovata\BaseCode\Classes\Console\GenerateCacheCommand');
+    }
+
+    /**
      * Check [lugin by name
      * @param string $sPluginName
      * @return bool
