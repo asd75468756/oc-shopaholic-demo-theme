@@ -76,6 +76,6 @@ return [
     |
     */
 
-    'prefix' => 'demo-shopaholic',
+    'prefix' => env('BRANCH_NAME').'demo-shopaholic',
 
 ];
