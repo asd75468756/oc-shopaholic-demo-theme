@@ -1,7 +1,10 @@
 <?php namespace Lovata\BaseCode;
 
+use Event;
 use System\Classes\PluginBase;
 use System\Classes\PluginManager;
+
+use Lovata\BaseCode\Classes\Event\ExtendPaymentGatewayHandler;
 
 /**
  * Class Plugin
@@ -29,6 +32,22 @@ class Plugin extends PluginBase
     public function register()
     {
         $this->registerConsoleCommand('shopaholic:generate.cache', 'Lovata\BaseCode\Classes\Console\GenerateCacheCommand');
+    }
+
+    /**
+     * Boot plugin method
+     */
+    public function boot()
+    {
+        $this->addEventListener();
+    }
+
+    /**
+     * Add event listeners
+     */
+    protected function addEventListener()
+    {
+        Event::subscribe(ExtendPaymentGatewayHandler::class);
     }
 
     /**

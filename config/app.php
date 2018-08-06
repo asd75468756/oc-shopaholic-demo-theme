@@ -147,4 +147,15 @@ return [
 
     ]),
 
+    'seo_models' => [
+        \Lovata\Shopaholic\Models\Product::class,
+        \Lovata\Shopaholic\Models\Category::class,
+        \Lovata\Shopaholic\Models\Brand::class,
+    ],
+
+    'seo_items' => [
+        \Lovata\Shopaholic\Classes\Item\ProductItem::class,
+        \Lovata\Shopaholic\Classes\Item\CategoryItem::class,
+        \Lovata\Shopaholic\Classes\Item\BrandItem::class,
+    ],
 ];
